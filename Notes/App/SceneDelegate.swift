@@ -18,6 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.rootViewController = RegistrationViewController()
         window?.makeKeyAndVisible()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setSignInController), name: NSNotification.Name(.setSignInController), object: nil)
+    }
+    
+    @objc func setSignInController() {
+        window?.rootViewController = SignInViewController()
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
