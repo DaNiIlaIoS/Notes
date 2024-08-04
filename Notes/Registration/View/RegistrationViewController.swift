@@ -12,10 +12,37 @@ class RegistrationViewController: UIViewController {
     private lazy var titleLabel = CustomLabel.createLabel(text: "Регистрация")
     
     private lazy var nameTextField = CustomTextField.createTextField(placeholder: "Имя")
+    
+    private lazy var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = Date()
+        datePicker.backgroundColor = .white
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.locale = Locale(identifier: "ru_RU")
+        return datePicker
+    }()
+    
+    private lazy var dateTextField: UITextField = {
+        
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneAction))
+        let spaceButton = UIBarButtonItem(systemItem: .flexibleSpace)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelAction))
+        toolbar.setItems([cancelButton, spaceButton, doneButton], animated: true)
+        
+        let textField = CustomTextField.createTextField(placeholder: "Дата рождения")
+        textField.inputAccessoryView = toolbar
+        textField.inputView = datePicker
+        return textField
+    }()
+    
     private lazy var emailTextField = CustomTextField.createTextField(placeholder: "Email")
     private lazy var passwordTextField = CustomTextField.createTextField(placeholder: "Пароль", isSecureTextEntry: true)
     
-    private lazy var textView = CustomTextView.createTextView(placeholder: "О себе (необязательно)")
     private lazy var registrationButton = CustomButton.createBigButton(title: "Регистрация")
     
     private lazy var haveAccountButton = CustomButton.createSmallButton(title: "уже есть аккаунт", action: UIAction(handler: { _ in
@@ -24,7 +51,7 @@ class RegistrationViewController: UIViewController {
     
     private lazy var textFieldsStack = CustomVStack.createStack(spacing: 20,
                                                                 arrangedSubviews: [nameTextField,
-                                                                                   textView,
+                                                                                   dateTextField,
                                                                                    emailTextField,
                                                                                    passwordTextField])
     
@@ -46,8 +73,6 @@ class RegistrationViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(mainStack)
         
-        textView.delegate = self
-        
         setupConstraints()
     }
     
@@ -59,20 +84,16 @@ class RegistrationViewController: UIViewController {
             //            mainStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
         ])
     }
-}
-
-extension RegistrationViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
+    
+    @objc func doneAction() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy"
+        formatter.locale = Locale(identifier: "ru_RU")
+        dateTextField.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Placeholder"
-            textView.textColor = UIColor.lightGray
-        }
+    @objc func cancelAction() {
+        self.view.endEditing(true)
     }
 }
