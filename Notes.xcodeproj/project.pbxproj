@@ -12,6 +12,14 @@
 		48120E7C2C5D30FD0023B0D3 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120E7B2C5D30FD0023B0D3 /* RegistrationViewController.swift */; };
 		48120E812C5D30FE0023B0D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48120E802C5D30FE0023B0D3 /* Assets.xcassets */; };
 		48120E842C5D30FE0023B0D3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 48120E832C5D30FE0023B0D3 /* Base */; };
+		48120ECC2C5FCDCA0023B0D3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ECB2C5FCDCA0023B0D3 /* CustomTextField.swift */; };
+		48120ECE2C5FD0CD0023B0D3 /* CustomVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ECD2C5FD0CD0023B0D3 /* CustomVStack.swift */; };
+		48120ED12C5FD1BA0023B0D3 /* UIStack+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED02C5FD1BA0023B0D3 /* UIStack+Ex.swift */; };
+		48120ED32C5FD2200023B0D3 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED22C5FD2200023B0D3 /* CustomLabel.swift */; };
+		48120ED52C5FD31B0023B0D3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED42C5FD31B0023B0D3 /* CustomButton.swift */; };
+		48120ED72C5FD8620023B0D3 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED62C5FD8620023B0D3 /* CustomTextView.swift */; };
+		48120ED92C5FDCF20023B0D3 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED82C5FDCF20023B0D3 /* SignInViewController.swift */; };
+		48120EDB2C5FDDBE0023B0D3 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120EDA2C5FDDBE0023B0D3 /* NotificationName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +30,14 @@
 		48120E802C5D30FE0023B0D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48120E832C5D30FE0023B0D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48120E852C5D30FE0023B0D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48120ECB2C5FCDCA0023B0D3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		48120ECD2C5FD0CD0023B0D3 /* CustomVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVStack.swift; sourceTree = "<group>"; };
+		48120ED02C5FD1BA0023B0D3 /* UIStack+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStack+Ex.swift"; sourceTree = "<group>"; };
+		48120ED22C5FD2200023B0D3 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		48120ED42C5FD31B0023B0D3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		48120ED62C5FD8620023B0D3 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		48120ED82C5FDCF20023B0D3 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		48120EDA2C5FDDBE0023B0D3 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +70,174 @@
 		48120E762C5D30FD0023B0D3 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				48120E772C5D30FD0023B0D3 /* AppDelegate.swift */,
-				48120E792C5D30FD0023B0D3 /* SceneDelegate.swift */,
-				48120E7B2C5D30FD0023B0D3 /* RegistrationViewController.swift */,
+				48120EBA2C5FA8630023B0D3 /* App */,
+				48120EB92C5FA8550023B0D3 /* Registration */,
+				48120EBB2C5FAB580023B0D3 /* SignIn */,
+				48120EBC2C5FABAB0023B0D3 /* Profile */,
+				48120ECA2C5FCDB40023B0D3 /* CustomUI */,
+				48120ECF2C5FD1A80023B0D3 /* Extensions */,
 				48120E802C5D30FE0023B0D3 /* Assets.xcassets */,
 				48120E822C5D30FE0023B0D3 /* LaunchScreen.storyboard */,
 				48120E852C5D30FE0023B0D3 /* Info.plist */,
 			);
 			path = Notes;
+			sourceTree = "<group>";
+		};
+		48120EB92C5FA8550023B0D3 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				48120EC12C5FAC080023B0D3 /* Model */,
+				48120EC22C5FAC080023B0D3 /* View */,
+				48120EC32C5FAC080023B0D3 /* Presenter */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		48120EBA2C5FA8630023B0D3 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				48120E772C5D30FD0023B0D3 /* AppDelegate.swift */,
+				48120E792C5D30FD0023B0D3 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		48120EBB2C5FAB580023B0D3 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				48120EBE2C5FABD30023B0D3 /* Model */,
+				48120EBF2C5FABE50023B0D3 /* View */,
+				48120EC02C5FABEC0023B0D3 /* Presenter */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		48120EBC2C5FABAB0023B0D3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				48120EC42C5FAC0B0023B0D3 /* Model */,
+				48120EC52C5FAC0B0023B0D3 /* View */,
+				48120EC62C5FAC0B0023B0D3 /* Presenter */,
+				48120EBD2C5FABBE0023B0D3 /* AddNote */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		48120EBD2C5FABBE0023B0D3 /* AddNote */ = {
+			isa = PBXGroup;
+			children = (
+				48120EC92C5FAC110023B0D3 /* Model */,
+				48120EC82C5FAC110023B0D3 /* View */,
+				48120EC72C5FAC110023B0D3 /* Presenter */,
+			);
+			path = AddNote;
+			sourceTree = "<group>";
+		};
+		48120EBE2C5FABD30023B0D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		48120EBF2C5FABE50023B0D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				48120ED82C5FDCF20023B0D3 /* SignInViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48120EC02C5FABEC0023B0D3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		48120EC12C5FAC080023B0D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		48120EC22C5FAC080023B0D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				48120E7B2C5D30FD0023B0D3 /* RegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48120EC32C5FAC080023B0D3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		48120EC42C5FAC0B0023B0D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		48120EC52C5FAC0B0023B0D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48120EC62C5FAC0B0023B0D3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		48120EC72C5FAC110023B0D3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		48120EC82C5FAC110023B0D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48120EC92C5FAC110023B0D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		48120ECA2C5FCDB40023B0D3 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				48120ECB2C5FCDCA0023B0D3 /* CustomTextField.swift */,
+				48120ECD2C5FD0CD0023B0D3 /* CustomVStack.swift */,
+				48120ED22C5FD2200023B0D3 /* CustomLabel.swift */,
+				48120ED42C5FD31B0023B0D3 /* CustomButton.swift */,
+				48120ED62C5FD8620023B0D3 /* CustomTextView.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		48120ECF2C5FD1A80023B0D3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				48120ED02C5FD1BA0023B0D3 /* UIStack+Ex.swift */,
+				48120EDA2C5FDDBE0023B0D3 /* NotificationName.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +310,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48120ECC2C5FCDCA0023B0D3 /* CustomTextField.swift in Sources */,
+				48120EDB2C5FDDBE0023B0D3 /* NotificationName.swift in Sources */,
 				48120E7C2C5D30FD0023B0D3 /* RegistrationViewController.swift in Sources */,
+				48120ED72C5FD8620023B0D3 /* CustomTextView.swift in Sources */,
 				48120E782C5D30FD0023B0D3 /* AppDelegate.swift in Sources */,
+				48120ED32C5FD2200023B0D3 /* CustomLabel.swift in Sources */,
+				48120ED52C5FD31B0023B0D3 /* CustomButton.swift in Sources */,
+				48120ED12C5FD1BA0023B0D3 /* UIStack+Ex.swift in Sources */,
 				48120E7A2C5D30FD0023B0D3 /* SceneDelegate.swift in Sources */,
+				48120ED92C5FDCF20023B0D3 /* SignInViewController.swift in Sources */,
+				48120ECE2C5FD0CD0023B0D3 /* CustomVStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
