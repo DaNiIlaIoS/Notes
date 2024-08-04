@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RegistrationViewController.swift
 //  Notes
 //
 //  Created by Даниил Сивожелезов on 02.08.2024.
@@ -7,13 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RegistrationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .yellow
     }
-
-
 }
 
