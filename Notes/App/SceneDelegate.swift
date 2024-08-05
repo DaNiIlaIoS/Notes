@@ -19,11 +19,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = RegistrationViewController()
         window?.makeKeyAndVisible()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setSignInController), name: NSNotification.Name(.setSignInController), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setRegistrationController), name: Notification.Name(.setRegistrationController), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setSignInController), name: Notification.Name(.setSignInController), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setProfileController), name: Notification.Name(.setProfileController), object: nil)
+    }
+    
+    @objc func setRegistrationController() {
+        window?.rootViewController = RegistrationViewController()
+        window?.makeKeyAndVisible()
     }
     
     @objc func setSignInController() {
         window?.rootViewController = SignInViewController()
+        window?.makeKeyAndVisible()
+    }
+    
+    @objc func setProfileController() {
+        window?.rootViewController = UINavigationController(rootViewController: ProfileViewController())
         window?.makeKeyAndVisible()
     }
 
