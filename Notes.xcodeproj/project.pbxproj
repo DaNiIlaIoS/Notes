@@ -20,6 +20,11 @@
 		48120ED72C5FD8620023B0D3 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED62C5FD8620023B0D3 /* CustomTextView.swift */; };
 		48120ED92C5FDCF20023B0D3 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED82C5FDCF20023B0D3 /* SignInViewController.swift */; };
 		48120EDB2C5FDDBE0023B0D3 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120EDA2C5FDDBE0023B0D3 /* NotificationName.swift */; };
+		48120EDF2C60F3890023B0D3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120EDE2C60F3890023B0D3 /* ProfileViewController.swift */; };
+		48D263172C610BD30032454E /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263162C610BD30032454E /* NotesViewController.swift */; };
+		48D263192C6119350032454E /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263182C6119350032454E /* NoteTableViewCell.swift */; };
+		48D2631B2C611F890032454E /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2631A2C611F890032454E /* NewNoteViewController.swift */; };
+		48D2631D2C612F140032454E /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2631C2C612F140032454E /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		48120ED62C5FD8620023B0D3 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		48120ED82C5FDCF20023B0D3 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		48120EDA2C5FDDBE0023B0D3 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
+		48120EDE2C60F3890023B0D3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		48D263162C610BD30032454E /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		48D263182C6119350032454E /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		48D2631A2C611F890032454E /* NewNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
+		48D2631C2C612F140032454E /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,19 +128,19 @@
 				48120EC42C5FAC0B0023B0D3 /* Model */,
 				48120EC52C5FAC0B0023B0D3 /* View */,
 				48120EC62C5FAC0B0023B0D3 /* Presenter */,
-				48120EBD2C5FABBE0023B0D3 /* AddNote */,
+				48120EBD2C5FABBE0023B0D3 /* Notes */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		48120EBD2C5FABBE0023B0D3 /* AddNote */ = {
+		48120EBD2C5FABBE0023B0D3 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
 				48120EC92C5FAC110023B0D3 /* Model */,
 				48120EC82C5FAC110023B0D3 /* View */,
 				48120EC72C5FAC110023B0D3 /* Presenter */,
 			);
-			path = AddNote;
+			path = Notes;
 			sourceTree = "<group>";
 		};
 		48120EBE2C5FABD30023B0D3 /* Model */ = {
@@ -187,6 +197,7 @@
 		48120EC52C5FAC0B0023B0D3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				48120EDE2C60F3890023B0D3 /* ProfileViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,6 +219,9 @@
 		48120EC82C5FAC110023B0D3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				48D263162C610BD30032454E /* NotesViewController.swift */,
+				48D2631A2C611F890032454E /* NewNoteViewController.swift */,
+				48D2631E2C6135380032454E /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +229,7 @@
 		48120EC92C5FAC110023B0D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				48D2631C2C612F140032454E /* Note.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,6 +253,14 @@
 				48120EDA2C5FDDBE0023B0D3 /* NotificationName.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		48D2631E2C6135380032454E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				48D263182C6119350032454E /* NoteTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,9 +337,14 @@
 				48120EDB2C5FDDBE0023B0D3 /* NotificationName.swift in Sources */,
 				48120E7C2C5D30FD0023B0D3 /* RegistrationViewController.swift in Sources */,
 				48120ED72C5FD8620023B0D3 /* CustomTextView.swift in Sources */,
+				48120EDF2C60F3890023B0D3 /* ProfileViewController.swift in Sources */,
+				48D2631B2C611F890032454E /* NewNoteViewController.swift in Sources */,
+				48D263192C6119350032454E /* NoteTableViewCell.swift in Sources */,
 				48120E782C5D30FD0023B0D3 /* AppDelegate.swift in Sources */,
 				48120ED32C5FD2200023B0D3 /* CustomLabel.swift in Sources */,
+				48D263172C610BD30032454E /* NotesViewController.swift in Sources */,
 				48120ED52C5FD31B0023B0D3 /* CustomButton.swift in Sources */,
+				48D2631D2C612F140032454E /* Note.swift in Sources */,
 				48120ED12C5FD1BA0023B0D3 /* UIStack+Ex.swift in Sources */,
 				48120E7A2C5D30FD0023B0D3 /* SceneDelegate.swift in Sources */,
 				48120ED92C5FDCF20023B0D3 /* SignInViewController.swift in Sources */,

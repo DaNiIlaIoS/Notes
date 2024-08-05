@@ -9,7 +9,7 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
-    private lazy var titleLabel = CustomLabel.createLabel(text: "Регистрация")
+    private lazy var titleLabel = CustomLabel.createMainLabel(text: "Регистрация")
     
     private lazy var nameTextField = CustomTextField.createTextField(placeholder: "Имя")
     
@@ -24,8 +24,6 @@ class RegistrationViewController: UIViewController {
     }()
     
     private lazy var dateTextField: UITextField = {
-        
-        
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
@@ -45,7 +43,7 @@ class RegistrationViewController: UIViewController {
     
     private lazy var registrationButton = CustomButton.createBigButton(title: "Регистрация")
     
-    private lazy var haveAccountButton = CustomButton.createSmallButton(title: "уже есть аккаунт", action: UIAction(handler: { _ in
+    private lazy var haveAccountButton = CustomButton.createSmallButton(title: "Уже есть аккаунт", action: UIAction(handler: { _ in
         NotificationCenter.default.post(Notification(name: Notification.Name(.setSignInController)))
     }))
     
@@ -53,7 +51,8 @@ class RegistrationViewController: UIViewController {
                                                                 arrangedSubviews: [nameTextField,
                                                                                    dateTextField,
                                                                                    emailTextField,
-                                                                                   passwordTextField])
+                                                                                   passwordTextField],
+                                                                distribution: .fillEqually)
     
     private lazy var buttonsStack = CustomVStack.createStack(spacing: 20,
                                                              arrangedSubviews: [registrationButton,
@@ -78,10 +77,9 @@ class RegistrationViewController: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            mainStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            mainStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             mainStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            mainStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            //            mainStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mainStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30)
         ])
     }
     

@@ -8,5 +8,7 @@
 import Foundation
 
 extension String {
+    static let setRegistrationController = "setRegistrationController"
     static let setSignInController = "setSignInController"
+    static let setProfileController = "setProfileController"
 }
