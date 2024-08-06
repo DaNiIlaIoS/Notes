@@ -12,7 +12,7 @@ class SignInViewController: UIViewController {
     private lazy var titleLabel = CustomLabel.createMainLabel(text: "Авторизация")
     
     private lazy var emailTextField = CustomTextField.createTextField(placeholder: "Email")
-    private lazy var passwordTextField = CustomTextField.createTextField(placeholder: "Пароль", isSecureTextEntry: true)
+    private lazy var passwordTextField = CustomTextField.createPasswordTextField(touchDownAction: #selector(showPassword), touchUpInsideAction: #selector(hidePassword))
     
     private lazy var signInButton = CustomButton.createBigButton(title: "Войти", action: UIAction(handler: { _ in
         NotificationCenter.default.post(Notification(name: Notification.Name(.setProfileController)))
@@ -51,5 +51,14 @@ class SignInViewController: UIViewController {
             mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
         ])
+    }
+    
+    @objc func showPassword() {
+        passwordTextField.isSecureTextEntry.toggle()
+    }
+    
+    @objc func hidePassword() {
+        // Скрываем пароль, когда кнопка отпускается внутри её границ
+        passwordTextField.isSecureTextEntry.toggle()
     }
 }

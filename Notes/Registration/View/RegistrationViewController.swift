@@ -7,7 +7,11 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+protocol RegistrationViewProtocol: AnyObject {
+    func showError()
+}
+
+class RegistrationViewController: UIViewController, RegistrationViewProtocol {
     
     private lazy var titleLabel = CustomLabel.createMainLabel(text: "Регистрация")
     
@@ -39,12 +43,17 @@ class RegistrationViewController: UIViewController {
     }()
     
     private lazy var emailTextField = CustomTextField.createTextField(placeholder: "Email")
-    private lazy var passwordTextField = CustomTextField.createTextField(placeholder: "Пароль", isSecureTextEntry: true)
     
-    private lazy var registrationButton = CustomButton.createBigButton(title: "Регистрация")
+    private lazy var passwordTextField = CustomTextField.createPasswordTextField(touchDownAction: #selector(showPassword), touchUpInsideAction: #selector(hidePassword))
     
-    private lazy var haveAccountButton = CustomButton.createSmallButton(title: "Уже есть аккаунт", action: UIAction(handler: { _ in
-        NotificationCenter.default.post(Notification(name: Notification.Name(.setSignInController)))
+    private lazy var registrationButton = CustomButton.createBigButton(title: "Регистрация", action: UIAction(handler: { [weak self] _ in
+        
+        self?.presenter.registerUser(name: self?.nameTextField.text, birthday: self?.dateTextField.text, email: self?.emailTextField.text, password: self?.passwordTextField.text)
+        
+    }))
+    
+    private lazy var haveAccountButton = CustomButton.createSmallButton(title: "Уже есть аккаунт", action: UIAction(handler: { [weak self] _ in
+        
     }))
     
     private lazy var textFieldsStack = CustomVStack.createStack(spacing: 20,
@@ -63,9 +72,17 @@ class RegistrationViewController: UIViewController {
                                                                              textFieldsStack,
                                                                              buttonsStack])
     
+    private var presenter: RegistrationPresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        presenter = RegistrationPresenter(view: self)
+    }
+    
+    func showError() {
+        //
     }
     
     private func setupUI() {
@@ -93,5 +110,14 @@ class RegistrationViewController: UIViewController {
     
     @objc func cancelAction() {
         self.view.endEditing(true)
+    }
+    
+    @objc func showPassword() {
+        passwordTextField.isSecureTextEntry.toggle()
+    }
+    
+    @objc func hidePassword() {
+        // Скрываем пароль, когда кнопка отпускается внутри её границ
+        passwordTextField.isSecureTextEntry.toggle()
     }
 }
