@@ -19,6 +19,13 @@ struct CustomButton {
         return button
     }
     
+    static func createShowPasswordButton() -> UIButton {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        button.tintColor = .lightGray
+        return button
+    }
+    
     static func createSmallButton(title: String, action: UIAction? = nil) -> UIButton {
         let button = UIButton(primaryAction: action)
         button.setTitle(title, for: .normal)
