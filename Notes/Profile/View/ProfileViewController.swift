@@ -11,13 +11,7 @@ final class ProfileViewController: UIViewController {
     
     private lazy var imageView: UIView = UIView()
     
-    private lazy var imagePicker: UIImagePickerController = {
-       let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        picker.delegate = self
-        return picker
-    }()
+    private lazy var imagePicker = CustomImagePicker.createImagePicker(delegate: self)
     
     private lazy var avatarImage: UIImageView = {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapImageAction))
@@ -81,8 +75,8 @@ final class ProfileViewController: UIViewController {
                                                             alignment: .center)
     
     private lazy var mainStack = CustomVStack.createStack(spacing: 20, arrangedSubviews: [imageView,
-                                                                                         labelsStack,
-                                                                                         notesButton])
+                                                                                          labelsStack,
+                                                                                          notesButton])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,7 +125,10 @@ extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             self.avatarImage.image = image
+        } else if let image = info[.originalImage] as? UIImage {
+            self.avatarImage.image = image
         }
         picker.dismiss(animated: true)
+        
     }
 }
