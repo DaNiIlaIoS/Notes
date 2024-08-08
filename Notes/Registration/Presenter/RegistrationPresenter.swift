@@ -29,9 +29,9 @@ final class RegistrationPresenter: RegistrationPresenterProtocol {
             return
         }
         
-        let userData = UserRegData(name: name, birthday: birthday, email: email, password: password)
+        let regData = UserRegData(name: name, birthday: birthday, email: email, password: password)
         
-        registrationManager.createUser(user: userData) { [weak self] result in
+        registrationManager.createUser(user: regData) { [weak self] result in
             switch result {
             case .success(let success):
                 if success {
@@ -39,7 +39,7 @@ final class RegistrationPresenter: RegistrationPresenterProtocol {
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
-                self?.view?.showError()
+                self?.view?.showError(message: failure.localizedDescription)
             }
         }
         

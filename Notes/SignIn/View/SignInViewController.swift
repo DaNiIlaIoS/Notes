@@ -7,16 +7,23 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+protocol SignInViewProtocol: AnyObject {
+    func showError(message: String)
+}
+
+class SignInViewController: UIViewController, SignInViewProtocol {
     
     private lazy var titleLabel = CustomLabel.createMainLabel(text: "Авторизация")
     
     private lazy var emailTextField = CustomTextField.createTextField(placeholder: "Email")
     private lazy var passwordTextField = CustomTextField.createPasswordTextField(touchDownAction: #selector(showPassword), touchUpInsideAction: #selector(hidePassword))
     
-    private lazy var signInButton = CustomButton.createBigButton(title: "Войти", action: UIAction(handler: { _ in
-        NotificationCenter.default.post(Notification(name: Notification.Name(.setProfileController)))
+    private lazy var signInButton = CustomButton.createBigButton(title: "Войти", action: UIAction(handler: { [weak self] _ in
+        
+        self?.presenter.checkUserData(email: self?.emailTextField.text, password: self?.passwordTextField.text)
+        
     }))
+    
     private lazy var registrationButton = CustomButton.createSmallButton(title: "Регистрация", action: UIAction(handler: { _ in
         NotificationCenter.default.post(Notification(name: Notification.Name(.setRegistrationController)))
     }))
@@ -33,8 +40,12 @@ class SignInViewController: UIViewController {
                                                                                           textFieldsStack,
                                                                                           buttonsStack])
     
+    
+    private var presenter: SignInPresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = SignInPresenter(view: self)
         setupUI()
     }
     
@@ -51,6 +62,10 @@ class SignInViewController: UIViewController {
             mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
         ])
+    }
+    
+    func showError(message: String) {
+        //
     }
     
     @objc func showPassword() {
