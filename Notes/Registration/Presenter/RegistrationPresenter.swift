@@ -39,7 +39,7 @@ final class RegistrationPresenter: RegistrationPresenterProtocol {
                 }
             case .failure(let failure):
                 print(failure.localizedDescription)
-                self?.view?.showError()
+                self?.view?.showError(message: failure.localizedDescription)
             }
         }
         
