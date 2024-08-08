@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController {
+protocol ProfileViewProtocol: AnyObject {
+    func showError(message: String)
+}
+
+final class ProfileViewController: UIViewController, ProfileViewProtocol {
     
     private lazy var imageView: UIView = UIView()
     
@@ -65,8 +69,8 @@ final class ProfileViewController: UIViewController {
         return button
     }()
     
-    private lazy var exitButton = CustomButton.createBigButton(title: "Выход", action: UIAction(handler: { _ in
-        NotificationCenter.default.post(Notification(name: Notification.Name(.setSignInController)))
+    private lazy var exitButton = CustomButton.createBigButton(title: "Выход", action: UIAction(handler: { [weak self] _ in
+        self?.presenter.signOut()
     }))
     
     private lazy var labelsStack = CustomVStack.createStack(spacing: 5, arrangedSubviews: [nameLabel,
@@ -78,9 +82,12 @@ final class ProfileViewController: UIViewController {
                                                                                           labelsStack,
                                                                                           notesButton])
     
+    private var presenter: ProfilePresenterProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My account"
+        presenter = ProfilePresenter(view: self)
         setupUI()
     }
     
@@ -118,6 +125,10 @@ final class ProfileViewController: UIViewController {
             buttonRightImage.trailingAnchor.constraint(equalTo: notesButton.trailingAnchor, constant: -10),
             buttonRightImage.centerYAnchor.constraint(equalTo: notesButton.centerYAnchor),
         ])
+    }
+    
+    func showError(message: String) {
+        //
     }
 }
 

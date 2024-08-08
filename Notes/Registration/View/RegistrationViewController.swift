@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RegistrationViewProtocol: AnyObject {
-    func showError()
+    func showError(message: String)
 }
 
 class RegistrationViewController: UIViewController, RegistrationViewProtocol {
@@ -53,7 +53,7 @@ class RegistrationViewController: UIViewController, RegistrationViewProtocol {
     }))
     
     private lazy var haveAccountButton = CustomButton.createSmallButton(title: "Уже есть аккаунт", action: UIAction(handler: { [weak self] _ in
-        
+        NotificationCenter.default.post(Notification(name: Notification.Name(.setSignInController)))
     }))
     
     private lazy var textFieldsStack = CustomVStack.createStack(spacing: 20,
@@ -81,7 +81,7 @@ class RegistrationViewController: UIViewController, RegistrationViewProtocol {
         presenter = RegistrationPresenter(view: self)
     }
     
-    func showError() {
+    func showError(message: String) {
         //
     }
     

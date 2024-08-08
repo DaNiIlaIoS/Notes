@@ -32,9 +32,7 @@ final class RegistrationFirebaseManager {
             .collection("users")
             .document(userId)
             .setData(userData) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
+                print("User is added")
             }
     }
 }
