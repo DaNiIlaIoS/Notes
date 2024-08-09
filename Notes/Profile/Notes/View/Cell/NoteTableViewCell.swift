@@ -71,6 +71,7 @@ final class NoteTableViewCell: UITableViewCell {
     private func setupUI() {
         addSubview(cellView)
         contentView.removeFromSuperview()
+        backgroundColor = UIColor.background
         cellView.addSubview(mainStack)
         setupConstraints()
     }

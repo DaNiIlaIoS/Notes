@@ -12,6 +12,7 @@ final class NotesViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: view.frame)
         tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.background
         tableView.dataSource = self
         tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.reuseId)
         return tableView
@@ -26,7 +27,7 @@ final class NotesViewController: UIViewController {
     
     private func setupUI() {
         title = "Заметки"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
         view.addSubview(tableView)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createNote))

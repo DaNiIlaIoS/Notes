@@ -30,6 +30,10 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = (view.frame.width / 2) / 2
+        
+        image.layer.borderColor = UIColor.white.cgColor // Цвет обводки
+        image.layer.borderWidth = 2.0 // Ширина обводки
+        
         return image
     }()
     
@@ -90,7 +94,6 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
         super.viewDidLoad()
         title = "My account"
         presenter = ProfilePresenter(view: self)
-        print(AppModel.userId)
         setupUI()
     }
     
@@ -105,7 +108,7 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
         
         view.addSubview(mainStack)
         view.addSubview(exitButton)

@@ -15,7 +15,7 @@ class RegistrationViewController: UIViewController, RegistrationViewProtocol {
     
     private lazy var titleLabel = CustomLabel.createMainLabel(text: "Регистрация")
     
-    private lazy var nameTextField = CustomTextField.createTextField(placeholder: "Имя")
+    private lazy var nameTextField = CustomTextField.createTextField(placeholder: "Имя Фамилия")
     
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -86,7 +86,7 @@ class RegistrationViewController: UIViewController, RegistrationViewProtocol {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
         view.addSubview(mainStack)
         
         setupConstraints()

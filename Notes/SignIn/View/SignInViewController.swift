@@ -50,7 +50,7 @@ class SignInViewController: UIViewController, SignInViewProtocol {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
         view.addSubview(mainStack)
         
         setupConstraints()

@@ -39,7 +39,7 @@ final class NewNoteViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
         view.addSubview(mainStack)
         
         setupConstraints()
