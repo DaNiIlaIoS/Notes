@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol ProfileViewProtocol: AnyObject {
+    func setUserData(imageUrl: URL?, name: String?, birthday: String?)
     func showError(message: String)
 }
 
@@ -32,8 +34,8 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
     }()
     
     private lazy var nameLabel = CustomLabel.createMainLabel(text: "User Name")
-    private lazy var emailLabel = CustomLabel.createSubLabel(text: "sivozelezovdaniil@gmail.com")
-    private lazy var birthsdayLabel = CustomLabel.createDateLabel(text: "07 апреля 2006")
+    private lazy var emailLabel = CustomLabel.createSubLabel(text: presenter.email ?? "")
+    private lazy var                                                                                            birthdayLabel = CustomLabel.createDateLabel(text: "07 апреля 2006")
     
     private lazy var buttonRightImage: UIImageView = {
         let image = UIImageView()
@@ -75,7 +77,7 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
     
     private lazy var labelsStack = CustomVStack.createStack(spacing: 5, arrangedSubviews: [nameLabel,
                                                                                            emailLabel,
-                                                                                           birthsdayLabel],
+                                                                                           birthdayLabel],
                                                             alignment: .center)
     
     private lazy var mainStack = CustomVStack.createStack(spacing: 20, arrangedSubviews: [imageView,
@@ -88,7 +90,14 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
         super.viewDidLoad()
         title = "My account"
         presenter = ProfilePresenter(view: self)
+        print(AppModel.userId)
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter.loadImageUrl()
     }
     
     @objc func tapImageAction() {
@@ -127,6 +136,12 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
         ])
     }
     
+    func setUserData(imageUrl: URL?, name: String?, birthday: String?) {
+        avatarImage.sd_setImage(with: imageUrl, placeholderImage: .placeholder)
+        nameLabel.text = name
+        birthdayLabel.text = birthday
+    }
+    
     func showError(message: String) {
         //
     }
@@ -136,6 +151,13 @@ extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             self.avatarImage.image = image
+            
+            if let imageData = image.pngData() {
+                presenter.uploadImage(image: imageData)
+            } else if let imageData = image.jpegData(compressionQuality: 0.1) {
+                presenter.uploadImage(image: imageData)
+            }
+            
         } else if let image = info[.originalImage] as? UIImage {
             self.avatarImage.image = image
         }

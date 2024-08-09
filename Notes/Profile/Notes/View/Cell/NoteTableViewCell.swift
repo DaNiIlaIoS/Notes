@@ -59,6 +59,7 @@ final class NoteTableViewCell: UITableViewCell {
         titleLabel.text = note.title
         dateLabel.text = note.date
         descriptionLabel.text = note.description
+        
         if let image = note.image {
             noteImage.image = UIImage(named: image)
             noteImage.isHidden = false
@@ -69,6 +70,7 @@ final class NoteTableViewCell: UITableViewCell {
     
     private func setupUI() {
         addSubview(cellView)
+        contentView.removeFromSuperview()
         cellView.addSubview(mainStack)
         setupConstraints()
     }
