@@ -31,6 +31,10 @@
 		48C066882C64CF8F00BA1728 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C066872C64CF8F00BA1728 /* AppModel.swift */; };
 		48C0668A2C64D10E00BA1728 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C066892C64D10E00BA1728 /* ProfilePresenter.swift */; };
 		48C0668C2C64D26E00BA1728 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C0668B2C64D26E00BA1728 /* SignInPresenter.swift */; };
+		48C0668E2C64E28500BA1728 /* ProfileFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C0668D2C64E28500BA1728 /* ProfileFirebaseManager.swift */; };
+		48C066932C662CEC00BA1728 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 48C066922C662CEC00BA1728 /* SDWebImage */; };
+		48C066952C662CEC00BA1728 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 48C066942C662CEC00BA1728 /* SDWebImageMapKit */; };
+		48C066972C6631AE00BA1728 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C066962C6631AE00BA1728 /* User.swift */; };
 		48D263172C610BD30032454E /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263162C610BD30032454E /* NotesViewController.swift */; };
 		48D263192C6119350032454E /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263182C6119350032454E /* NoteTableViewCell.swift */; };
 		48D2631B2C611F890032454E /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2631A2C611F890032454E /* NewNoteViewController.swift */; };
@@ -64,6 +68,8 @@
 		48C066872C64CF8F00BA1728 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		48C066892C64D10E00BA1728 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		48C0668B2C64D26E00BA1728 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
+		48C0668D2C64E28500BA1728 /* ProfileFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFirebaseManager.swift; sourceTree = "<group>"; };
+		48C066962C6631AE00BA1728 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		48D263162C610BD30032454E /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		48D263182C6119350032454E /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		48D2631A2C611F890032454E /* NewNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +89,8 @@
 				48C066642C63828900BA1728 /* FirebaseStorage in Frameworks */,
 				48C0665E2C63828900BA1728 /* FirebaseAuth in Frameworks */,
 				48C066622C63828900BA1728 /* FirebaseFirestore in Frameworks */,
+				48C066952C662CEC00BA1728 /* SDWebImageMapKit in Frameworks */,
+				48C066932C662CEC00BA1728 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +235,8 @@
 		48120EC42C5FAC0B0023B0D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				48C066962C6631AE00BA1728 /* User.swift */,
+				48C0668D2C64E28500BA1728 /* ProfileFirebaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,6 +340,8 @@
 				48C0665F2C63828900BA1728 /* FirebaseDatabase */,
 				48C066612C63828900BA1728 /* FirebaseFirestore */,
 				48C066632C63828900BA1728 /* FirebaseStorage */,
+				48C066922C662CEC00BA1728 /* SDWebImage */,
+				48C066942C662CEC00BA1728 /* SDWebImageMapKit */,
 			);
 			productName = Notes;
 			productReference = 48120E742C5D30FD0023B0D3 /* Notes.app */;
@@ -361,6 +373,7 @@
 			mainGroup = 48120E6B2C5D30FC0023B0D3;
 			packageReferences = (
 				48C0665C2C63828900BA1728 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				48C066912C662CEC00BA1728 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 48120E752C5D30FD0023B0D3 /* Products */;
 			projectDirPath = "";
@@ -400,6 +413,7 @@
 				48D263192C6119350032454E /* NoteTableViewCell.swift in Sources */,
 				48C0668C2C64D26E00BA1728 /* SignInPresenter.swift in Sources */,
 				48120E782C5D30FD0023B0D3 /* AppDelegate.swift in Sources */,
+				48C0668E2C64E28500BA1728 /* ProfileFirebaseManager.swift in Sources */,
 				48120ED32C5FD2200023B0D3 /* CustomLabel.swift in Sources */,
 				48D263172C610BD30032454E /* NotesViewController.swift in Sources */,
 				48D263202C62877F0032454E /* CustomImagePicker.swift in Sources */,
@@ -407,6 +421,7 @@
 				48C066882C64CF8F00BA1728 /* AppModel.swift in Sources */,
 				48D2631D2C612F140032454E /* Note.swift in Sources */,
 				48D263222C628C890032454E /* RegistrationFirebaseManager.swift in Sources */,
+				48C066972C6631AE00BA1728 /* User.swift in Sources */,
 				48120ED12C5FD1BA0023B0D3 /* UIStack+Ex.swift in Sources */,
 				48C066862C64CD1600BA1728 /* UserData.swift in Sources */,
 				48C066842C64CCB800BA1728 /* SignInFirebaseManager.swift in Sources */,
@@ -646,6 +661,14 @@
 				minimumVersion = 11.0.0;
 			};
 		};
+		48C066912C662CEC00BA1728 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.19.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -668,6 +691,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 48C0665C2C63828900BA1728 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		48C066922C662CEC00BA1728 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48C066912C662CEC00BA1728 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		48C066942C662CEC00BA1728 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48C066912C662CEC00BA1728 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
