@@ -6,18 +6,18 @@
 //
 
 import UIKit
+import SDWebImage
 
-final class ProfileViewController: UIViewController {
+protocol ProfileViewProtocol: AnyObject {
+    func setUserData(imageUrl: URL?, name: String?, birthday: String?)
+    func showError(message: String)
+}
+
+final class ProfileViewController: UIViewController, ProfileViewProtocol {
     
     private lazy var imageView: UIView = UIView()
     
-    private lazy var imagePicker: UIImagePickerController = {
-       let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        picker.delegate = self
-        return picker
-    }()
+    private lazy var imagePicker = CustomImagePicker.createImagePicker(delegate: self)
     
     private lazy var avatarImage: UIImageView = {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapImageAction))
@@ -30,12 +30,16 @@ final class ProfileViewController: UIViewController {
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = (view.frame.width / 2) / 2
+        
+        image.layer.borderColor = UIColor.white.cgColor // Цвет обводки
+        image.layer.borderWidth = 2.0 // Ширина обводки
+        
         return image
     }()
     
     private lazy var nameLabel = CustomLabel.createMainLabel(text: "User Name")
-    private lazy var emailLabel = CustomLabel.createSubLabel(text: "sivozelezovdaniil@gmail.com")
-    private lazy var birthsdayLabel = CustomLabel.createDateLabel(text: "07 апреля 2006")
+    private lazy var emailLabel = CustomLabel.createSubLabel(text: presenter.email ?? "")
+    private lazy var                                                                                            birthdayLabel = CustomLabel.createDateLabel(text: "07 апреля 2006")
     
     private lazy var buttonRightImage: UIImageView = {
         let image = UIImageView()
@@ -71,23 +75,32 @@ final class ProfileViewController: UIViewController {
         return button
     }()
     
-    private lazy var exitButton = CustomButton.createBigButton(title: "Выход", action: UIAction(handler: { _ in
-        NotificationCenter.default.post(Notification(name: Notification.Name(.setSignInController)))
+    private lazy var exitButton = CustomButton.createBigButton(title: "Выход", action: UIAction(handler: { [weak self] _ in
+        self?.presenter.signOut()
     }))
     
     private lazy var labelsStack = CustomVStack.createStack(spacing: 5, arrangedSubviews: [nameLabel,
                                                                                            emailLabel,
-                                                                                           birthsdayLabel],
+                                                                                           birthdayLabel],
                                                             alignment: .center)
     
     private lazy var mainStack = CustomVStack.createStack(spacing: 20, arrangedSubviews: [imageView,
-                                                                                         labelsStack,
-                                                                                         notesButton])
+                                                                                          labelsStack,
+                                                                                          notesButton])
+    
+    private var presenter: ProfilePresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My account"
+        presenter = ProfilePresenter(view: self)
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter.loadImageUrl()
     }
     
     @objc func tapImageAction() {
@@ -95,7 +108,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.background
         
         view.addSubview(mainStack)
         view.addSubview(exitButton)
@@ -125,13 +138,33 @@ final class ProfileViewController: UIViewController {
             buttonRightImage.centerYAnchor.constraint(equalTo: notesButton.centerYAnchor),
         ])
     }
+    
+    func setUserData(imageUrl: URL?, name: String?, birthday: String?) {
+        avatarImage.sd_setImage(with: imageUrl, placeholderImage: .placeholder)
+        nameLabel.text = name
+        birthdayLabel.text = birthday
+    }
+    
+    func showError(message: String) {
+        //
+    }
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             self.avatarImage.image = image
+            
+            if let imageData = image.pngData() {
+                presenter.uploadImage(image: imageData)
+            } else if let imageData = image.jpegData(compressionQuality: 0.1) {
+                presenter.uploadImage(image: imageData)
+            }
+            
+        } else if let image = info[.originalImage] as? UIImage {
+            self.avatarImage.image = image
         }
         picker.dismiss(animated: true)
+        
     }
 }

@@ -9,8 +9,8 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    private let appModel = AppModel()
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -18,6 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.rootViewController = RegistrationViewController()
         window?.makeKeyAndVisible()
+        
+        if appModel.isUserLogin() {
+            setProfileController()
+        } else {
+            setSignInController()
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(setRegistrationController), name: Notification.Name(.setRegistrationController), object: nil)
         
