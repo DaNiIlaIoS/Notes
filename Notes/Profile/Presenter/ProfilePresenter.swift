@@ -10,8 +10,9 @@ import FirebaseAuth
 
 protocol ProfilePresenterProtocol: AnyObject {
     var email: String? { get }
+    
     func uploadImage(image: Data)
-    func loadImageUrl()
+    func getUserData()
     func signOut()
 }
 
@@ -30,7 +31,7 @@ final class ProfilePresenter: ProfilePresenterProtocol {
         firebaseManager.uploadImage(image: image)
     }
     
-    func loadImageUrl() {
+    func getUserData() {
         firebaseManager.getUserData { [weak self] user in
             switch user {
             case .success(let user):

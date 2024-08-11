@@ -7,13 +7,14 @@
 
 import UIKit
 
-final class NotesViewController: UIViewController {
+final class NotesListViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: view.frame)
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.background
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.reuseId)
         return tableView
     }()
@@ -34,12 +35,12 @@ final class NotesViewController: UIViewController {
     }
     
     @objc func createNote() {
-        let newNoteVC = NewNoteViewController()
-        navigationController?.pushViewController(newNoteVC, animated: true)
+        let noteVC = NoteViewController()
+        navigationController?.pushViewController(noteVC, animated: true)
     }
 }
 
-extension NotesViewController: UITableViewDataSource {
+extension NotesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         5
     }
@@ -52,5 +53,14 @@ extension NotesViewController: UITableViewDataSource {
         cell.configCell(note: note)
         
         return cell
+    }
+}
+
+extension NotesListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let note = notes[indexPath.row]
+        let noteVC = NoteViewController()
+        noteVC.set(note: note)
+        navigationController?.pushViewController(noteVC, animated: true)
     }
 }
