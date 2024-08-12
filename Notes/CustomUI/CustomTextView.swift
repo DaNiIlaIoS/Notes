@@ -11,7 +11,7 @@ struct CustomTextView {
     static func createTextView(placeholder: String) -> UITextView {
         let textView = UITextView()
         textView.text = placeholder
-        textView.textColor = UIColor.systemGray3
+        textView.textColor = .systemGray3
         textView.font = .systemFont(ofSize: 16)
         textView.layer.borderColor = UIColor.systemGray6.cgColor
         textView.layer.borderWidth = 1.0
@@ -20,6 +20,4 @@ struct CustomTextView {
         textView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         return textView
     }
-    
-    
 }

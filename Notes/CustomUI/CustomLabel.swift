@@ -16,7 +16,7 @@ struct CustomLabel {
         return label
     }
     
-    static func createSubLabel(text: String, alignment: NSTextAlignment = .natural) -> UILabel {
+    static func createSubLabel(text: String? = nil, alignment: NSTextAlignment = .natural) -> UILabel {
         let label = UILabel()
         label.text = text
         label.textAlignment = alignment
@@ -26,7 +26,7 @@ struct CustomLabel {
         return label
     }
     
-    static func createDateLabel(text: String) -> UILabel {
+    static func createDateLabel(text: String? = nil) -> UILabel {
         let label = UILabel()
         label.text = text
         label.textColor = .gray

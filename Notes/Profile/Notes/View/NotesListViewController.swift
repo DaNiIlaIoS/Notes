@@ -7,18 +7,23 @@
 
 import UIKit
 
-final class NotesViewController: UIViewController {
+protocol NoteListViewProtocol: AnyObject {
+    
+}
+
+final class NotesListViewController: UIViewController, NoteListViewProtocol {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: view.frame)
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.background
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.reuseId)
         return tableView
     }()
     
-    private let notes: [Note] = Note.mockObject()
+    private let notes: [Note] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,23 +39,31 @@ final class NotesViewController: UIViewController {
     }
     
     @objc func createNote() {
-        let newNoteVC = NewNoteViewController()
-        navigationController?.pushViewController(newNoteVC, animated: true)
+        let noteVC = NoteViewController()
+        navigationController?.pushViewController(noteVC, animated: true)
     }
 }
 
-extension NotesViewController: UITableViewDataSource {
+extension NotesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        notes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.reuseId, for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
-        let note = notes[indexPath.row]
+//        let note = notes[indexPath.row]
         
         cell.selectionStyle = .none
-        cell.configCell(note: note)
+//        cell.configCell(note: note)
         
         return cell
+    }
+}
+
+extension NotesListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let note = notes[indexPath.row]
+        let noteVC = NoteViewController()
+        navigationController?.pushViewController(noteVC, animated: true)
     }
 }
