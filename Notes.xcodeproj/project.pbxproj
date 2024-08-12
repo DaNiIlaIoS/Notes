@@ -43,6 +43,8 @@
 		48D263222C628C890032454E /* RegistrationFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263212C628C880032454E /* RegistrationFirebaseManager.swift */; };
 		48D2632E2C628DBB0032454E /* UserRegData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2632D2C628DBB0032454E /* UserRegData.swift */; };
 		48D263322C6291D00032454E /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263312C6291D00032454E /* RegistrationPresenter.swift */; };
+		48D2B77B2C6A6C160078F71F /* NoteFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2B77A2C6A6C160078F71F /* NoteFirebaseManager.swift */; };
+		48D2B77E2C6A70F80078F71F /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2B77D2C6A70F80078F71F /* NotePresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		48D263212C628C880032454E /* RegistrationFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFirebaseManager.swift; sourceTree = "<group>"; };
 		48D2632D2C628DBB0032454E /* UserRegData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegData.swift; sourceTree = "<group>"; };
 		48D263312C6291D00032454E /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		48D2B77A2C6A6C160078F71F /* NoteFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFirebaseManager.swift; sourceTree = "<group>"; };
+		48D2B77D2C6A70F80078F71F /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +264,7 @@
 		48120EC72C5FAC110023B0D3 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				48D2B77D2C6A70F80078F71F /* NotePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				48D2631C2C612F140032454E /* Note.swift */,
+				48D2B77A2C6A6C160078F71F /* NoteFirebaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -412,9 +418,11 @@
 				48D2631B2C611F890032454E /* NoteViewController.swift in Sources */,
 				48D263192C6119350032454E /* NoteTableViewCell.swift in Sources */,
 				48C0668C2C64D26E00BA1728 /* SignInPresenter.swift in Sources */,
+				48D2B77B2C6A6C160078F71F /* NoteFirebaseManager.swift in Sources */,
 				48120E782C5D30FD0023B0D3 /* AppDelegate.swift in Sources */,
 				48120ED32C5FD2200023B0D3 /* CustomLabel.swift in Sources */,
 				48D263172C610BD30032454E /* NotesListViewController.swift in Sources */,
+				48D2B77E2C6A70F80078F71F /* NotePresenter.swift in Sources */,
 				48D263202C62877F0032454E /* CustomImagePicker.swift in Sources */,
 				48120ED52C5FD31B0023B0D3 /* CustomButton.swift in Sources */,
 				48C066882C64CF8F00BA1728 /* AppModel.swift in Sources */,

@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class NoteViewController: UIViewController {
+protocol NoteViewProtocol: AnyObject {
+    func showError(message: String)
+}
+
+final class NoteViewController: UIViewController, NoteViewProtocol {
     
     private lazy var titleTextField = CustomTextField.createTextField(placeholder: "Заголовок")
     private lazy var descriptionTextView = CustomTextView.createTextView(placeholder: "Текст")
@@ -26,17 +30,29 @@ final class NoteViewController: UIViewController {
         self.present(self.imagePicker, animated: true)
     }))
     
-    private lazy var saveButton = CustomButton.createBigButton(title: "Сохранить", action: UIAction(handler: { [weak self] _ in
-        self?.navigationController?.popViewController(animated: true)
-    }))
+    private lazy var saveButton = CustomButton.createBigButton(title: "Сохранить", action: saveAction)
     
     private lazy var mainStack = CustomVStack.createStack(spacing: 20, arrangedSubviews: [titleTextField,
                                                                                           descriptionTextView,
                                                                                           imageView,
                                                                                           addImageButton])
+    private lazy var saveAction = UIAction { [weak self] _ in
+        
+        guard let title = self?.titleTextField.text else {
+            self?.showError(message: "Please fill title text field")
+            return
+        }
+        
+        self?.presenter.createNote(title: title, text: self?.descriptionTextView.text ?? "")
+        self?.navigationController?.popViewController(animated: true)
+    }
+    
+    private var presenter: NotePresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = NotePresenter(view: self)
+        
         setupUI()
         updateImageViewVisibility()
         
@@ -65,16 +81,8 @@ final class NoteViewController: UIViewController {
         ])
     }
     
-    func set(note: Note) {
-        titleTextField.text = note.title
-        
-        descriptionTextView.text = note.description
-        descriptionTextView.textColor = .textViewText
-        
-        if let image = note.image {
-            imageView.image = UIImage(named: image)
-        }
-        
+    func showError(message: String) {
+        //
     }
     
     private func updateImageViewVisibility() {

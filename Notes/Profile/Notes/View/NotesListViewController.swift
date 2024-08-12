@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class NotesListViewController: UIViewController {
+protocol NoteListViewProtocol: AnyObject {
+    
+}
+
+final class NotesListViewController: UIViewController, NoteListViewProtocol {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: view.frame)
@@ -19,7 +23,7 @@ final class NotesListViewController: UIViewController {
         return tableView
     }()
     
-    private let notes: [Note] = Note.mockObject()
+    private let notes: [Note] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +46,15 @@ final class NotesListViewController: UIViewController {
 
 extension NotesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        notes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.reuseId, for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
-        let note = notes[indexPath.row]
+//        let note = notes[indexPath.row]
         
         cell.selectionStyle = .none
-        cell.configCell(note: note)
+//        cell.configCell(note: note)
         
         return cell
     }
@@ -58,9 +62,8 @@ extension NotesListViewController: UITableViewDataSource {
 
 extension NotesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let note = notes[indexPath.row]
+//        let note = notes[indexPath.row]
         let noteVC = NoteViewController()
-        noteVC.set(note: note)
         navigationController?.pushViewController(noteVC, animated: true)
     }
 }

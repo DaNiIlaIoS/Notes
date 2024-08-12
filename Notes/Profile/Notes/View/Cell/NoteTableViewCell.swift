@@ -19,20 +19,19 @@ final class NoteTableViewCell: UITableViewCell {
     }()
     
     private lazy var titleLabel: UILabel = {
-        let label = CustomLabel.createSubLabel(text: "Заголовок заметки")
+        let label = CustomLabel.createSubLabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
         return label
     }()
     
-    private lazy var dateLabel = CustomLabel.createDateLabel(text: "25.04.24")
-    private lazy var descriptionLabel = CustomLabel.createSubLabel(text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore")
+    private lazy var dateLabel = CustomLabel.createDateLabel()
+    private lazy var descriptionLabel = CustomLabel.createSubLabel()
     
     lazy var noteImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.layer.cornerRadius = 10
-        image.image = .placeholder
         image.translatesAutoresizingMaskIntoConstraints = false
         image.heightAnchor.constraint(equalToConstant: self.frame.width / 2).isActive = true
         return image
@@ -56,16 +55,7 @@ final class NoteTableViewCell: UITableViewCell {
     }
     
     func configCell(note: Note) {
-        titleLabel.text = note.title
-        dateLabel.text = note.date
-        descriptionLabel.text = note.description
         
-        if let image = note.image {
-            noteImage.image = UIImage(named: image)
-            noteImage.isHidden = false
-        } else {
-            noteImage.isHidden = true
-        }
     }
     
     private func setupUI() {
