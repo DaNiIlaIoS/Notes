@@ -35,14 +35,16 @@
 		48C066952C662CEC00BA1728 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 48C066942C662CEC00BA1728 /* SDWebImageMapKit */; };
 		48C0669B2C6645EC00BA1728 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C0669A2C6645EC00BA1728 /* User.swift */; };
 		48C0669D2C6645F700BA1728 /* ProfileFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C0669C2C6645F700BA1728 /* ProfileFirebaseManager.swift */; };
-		48D263172C610BD30032454E /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263162C610BD30032454E /* NotesViewController.swift */; };
+		48D263172C610BD30032454E /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263162C610BD30032454E /* NotesListViewController.swift */; };
 		48D263192C6119350032454E /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263182C6119350032454E /* NoteTableViewCell.swift */; };
-		48D2631B2C611F890032454E /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2631A2C611F890032454E /* NewNoteViewController.swift */; };
+		48D2631B2C611F890032454E /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2631A2C611F890032454E /* NoteViewController.swift */; };
 		48D2631D2C612F140032454E /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2631C2C612F140032454E /* Note.swift */; };
 		48D263202C62877F0032454E /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2631F2C62877F0032454E /* CustomImagePicker.swift */; };
 		48D263222C628C890032454E /* RegistrationFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263212C628C880032454E /* RegistrationFirebaseManager.swift */; };
 		48D2632E2C628DBB0032454E /* UserRegData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2632D2C628DBB0032454E /* UserRegData.swift */; };
 		48D263322C6291D00032454E /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263312C6291D00032454E /* RegistrationPresenter.swift */; };
+		48D2B77B2C6A6C160078F71F /* NoteFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2B77A2C6A6C160078F71F /* NoteFirebaseManager.swift */; };
+		48D2B77E2C6A70F80078F71F /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2B77D2C6A70F80078F71F /* NotePresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,14 +72,16 @@
 		48C0668B2C64D26E00BA1728 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		48C0669A2C6645EC00BA1728 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		48C0669C2C6645F700BA1728 /* ProfileFirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileFirebaseManager.swift; sourceTree = "<group>"; };
-		48D263162C610BD30032454E /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		48D263162C610BD30032454E /* NotesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; };
 		48D263182C6119350032454E /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
-		48D2631A2C611F890032454E /* NewNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
+		48D2631A2C611F890032454E /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		48D2631C2C612F140032454E /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		48D2631F2C62877F0032454E /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
 		48D263212C628C880032454E /* RegistrationFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFirebaseManager.swift; sourceTree = "<group>"; };
 		48D2632D2C628DBB0032454E /* UserRegData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegData.swift; sourceTree = "<group>"; };
 		48D263312C6291D00032454E /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		48D2B77A2C6A6C160078F71F /* NoteFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFirebaseManager.swift; sourceTree = "<group>"; };
+		48D2B77D2C6A70F80078F71F /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +264,7 @@
 		48120EC72C5FAC110023B0D3 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				48D2B77D2C6A70F80078F71F /* NotePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -267,8 +272,8 @@
 		48120EC82C5FAC110023B0D3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				48D263162C610BD30032454E /* NotesViewController.swift */,
-				48D2631A2C611F890032454E /* NewNoteViewController.swift */,
+				48D263162C610BD30032454E /* NotesListViewController.swift */,
+				48D2631A2C611F890032454E /* NoteViewController.swift */,
 				48D2631E2C6135380032454E /* Cell */,
 			);
 			path = View;
@@ -278,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				48D2631C2C612F140032454E /* Note.swift */,
+				48D2B77A2C6A6C160078F71F /* NoteFirebaseManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -409,12 +415,14 @@
 				48120E7C2C5D30FD0023B0D3 /* RegistrationViewController.swift in Sources */,
 				48120ED72C5FD8620023B0D3 /* CustomTextView.swift in Sources */,
 				48120EDF2C60F3890023B0D3 /* ProfileViewController.swift in Sources */,
-				48D2631B2C611F890032454E /* NewNoteViewController.swift in Sources */,
+				48D2631B2C611F890032454E /* NoteViewController.swift in Sources */,
 				48D263192C6119350032454E /* NoteTableViewCell.swift in Sources */,
 				48C0668C2C64D26E00BA1728 /* SignInPresenter.swift in Sources */,
+				48D2B77B2C6A6C160078F71F /* NoteFirebaseManager.swift in Sources */,
 				48120E782C5D30FD0023B0D3 /* AppDelegate.swift in Sources */,
 				48120ED32C5FD2200023B0D3 /* CustomLabel.swift in Sources */,
-				48D263172C610BD30032454E /* NotesViewController.swift in Sources */,
+				48D263172C610BD30032454E /* NotesListViewController.swift in Sources */,
+				48D2B77E2C6A70F80078F71F /* NotePresenter.swift in Sources */,
 				48D263202C62877F0032454E /* CustomImagePicker.swift in Sources */,
 				48120ED52C5FD31B0023B0D3 /* CustomButton.swift in Sources */,
 				48C066882C64CF8F00BA1728 /* AppModel.swift in Sources */,
@@ -575,6 +583,7 @@
 				DEVELOPMENT_TEAM = TUPKULQZ9B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Notes/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Для работы приложения нужен доступ к галерее";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -607,6 +616,7 @@
 				DEVELOPMENT_TEAM = TUPKULQZ9B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Notes/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Для работы приложения нужен доступ к галерее";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

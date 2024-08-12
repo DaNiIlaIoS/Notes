@@ -59,7 +59,7 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
         })
         
         let button = UIButton(configuration: config, primaryAction: UIAction(handler: { [weak self] _ in
-            let notesVC = NotesViewController()
+            let notesVC = NotesListViewController()
             self?.navigationController?.pushViewController(notesVC, animated: true)
         }))
         
@@ -67,7 +67,7 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
         button.setImage(UIImage(systemName: "folder"), for: .normal)
         button.contentHorizontalAlignment = .leading
         button.layer.cornerRadius = 10
-        button.backgroundColor = .systemGray6
+        button.backgroundColor = .white
         button.tintColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
@@ -100,7 +100,7 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presenter.loadImageUrl()
+        presenter.getUserData()
     }
     
     @objc func tapImageAction() {
