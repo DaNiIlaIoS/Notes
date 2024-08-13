@@ -8,7 +8,8 @@
 import Foundation
 
 protocol NotePresenterProtocol: AnyObject {
-    func createNote(title: String, text: String)
+    func uploadImage(image: Data)
+    func createNote(title: String, text: String, image: Data?)
 }
 
 final class NotePresenter: NotePresenterProtocol {
@@ -19,7 +20,11 @@ final class NotePresenter: NotePresenterProtocol {
         self.view = view
     }
     
-    func createNote(title: String, text: String) {
-        noteManager.createNote(title: title, text: text)
+    func createNote(title: String, text: String, image: Data?) {
+        noteManager.createNote(title: title, text: text, imageData: image)
+    }
+    
+    func uploadImage(image: Data) {
+        
     }
 }
