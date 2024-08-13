@@ -14,6 +14,7 @@ protocol NotePresenterProtocol: AnyObject {
 
 final class NotePresenter: NotePresenterProtocol {
     private let noteManager = NoteFirebaseManager()
+    
     weak var view: NoteViewProtocol?
     
     init(view: NoteViewProtocol) {

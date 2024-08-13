@@ -31,7 +31,6 @@ final class NoteFirebaseManager {
     func uploadImage(image: Data, id: String) {
         guard let userId = AppModel.userId else { return }
         
-        let imageName = "noteImage"
         let ref = Storage.storage().reference().child(userId + "/images").child("notesImages").child(id + ".jpeg")
         
         uploadOneImage(image: image, storage: ref) { [weak self] result in
@@ -43,6 +42,46 @@ final class NoteFirebaseManager {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func getNotes(completion: @escaping ([Note]) -> ()) {
+        guard let userId = AppModel.userId else { return }
+        
+        Firestore.firestore()
+            .collection("users")
+            .document(userId)
+            .collection("notes")
+            .order(by: "date", descending: true)
+            .addSnapshotListener { snapshot, error in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                
+                var notes: [Note] = []
+                
+                if let document = snapshot?.documents {
+                    document.forEach { document in
+                        let id = document.documentID
+                        let title = document["title"] as! String
+                        let description = document["text"] as? String
+                        
+                        let timestamp = document["date"] as! Timestamp
+                        let date = timestamp.dateValue()
+                        
+                        let isCompleted = document["isCompleted"] as! Bool
+                        
+                        var imageUrl: URL?
+                        if let stringUrl = document["noteImageUrl"] as? String {
+                            imageUrl = URL(string: stringUrl)
+                        }
+                        
+                        let oneNote = Note(id: id, title: title, description: description, date: date, imageUrl: imageUrl, isCompleted: isCompleted)
+                        notes.append(oneNote)
+                    }
+                }
+                completion(notes)
+            }
     }
     
     private func setNoteImage(stringUrl: String, noteId: String) {

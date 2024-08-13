@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NoteListViewProtocol: AnyObject {
-    
+    func updateNotes()
 }
 
 final class NotesListViewController: UIViewController, NoteListViewProtocol {
@@ -24,9 +24,11 @@ final class NotesListViewController: UIViewController, NoteListViewProtocol {
     }()
     
     private let notes: [Note] = []
+    private var presenter: NoteListPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = NoteListPresenter(view: self)
         setupUI()
     }
     
@@ -38,6 +40,10 @@ final class NotesListViewController: UIViewController, NoteListViewProtocol {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createNote))
     }
     
+    func updateNotes() {
+        tableView.reloadData()
+    }
+    
     @objc func createNote() {
         let noteVC = NoteViewController()
         navigationController?.pushViewController(noteVC, animated: true)
@@ -46,15 +52,15 @@ final class NotesListViewController: UIViewController, NoteListViewProtocol {
 
 extension NotesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        notes.count
+        presenter.notes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.reuseId, for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
-        let note = notes[indexPath.row]
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let note = presenter.notes[indexPath.row]
         
-        cell.selectionStyle = .none
-//        cell.configCell(note: note)
+        cell.configCell(note: note)
         
         return cell
     }
@@ -65,5 +71,7 @@ extension NotesListViewController: UITableViewDelegate {
 //        let note = notes[indexPath.row]
         let noteVC = NoteViewController()
         navigationController?.pushViewController(noteVC, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

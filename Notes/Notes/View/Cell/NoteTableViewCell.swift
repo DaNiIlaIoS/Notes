@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class NoteTableViewCell: UITableViewCell {
     static let reuseId = "NoteTableViewCell"
@@ -44,6 +45,7 @@ final class NoteTableViewCell: UITableViewCell {
                                                                                           noteImage,
                                                                                           descriptionLabel])
     
+    var isCompleted: Bool = false
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -55,7 +57,17 @@ final class NoteTableViewCell: UITableViewCell {
     }
     
     func configCell(note: Note) {
+        titleLabel.text = note.title
+        dateLabel.text = Date().formateDate(dateString: note.id)
+        descriptionLabel.text = note.description
+        isCompleted = note.isCompleted
         
+        if let image = note.imageUrl {
+            noteImage.isHidden = false
+            noteImage.sd_setImage(with: image)
+        } else {
+            noteImage.isHidden = true
+        }
     }
     
     private func setupUI() {
@@ -80,3 +92,4 @@ final class NoteTableViewCell: UITableViewCell {
         ])
     }
 }
+
