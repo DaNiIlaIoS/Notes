@@ -43,7 +43,9 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
             return
         }
         
-        self?.presenter.createNote(title: title, text: self?.descriptionTextView.text ?? "")
+        let imageData = self?.imageView.image?.jpegData(compressionQuality: 0.1)
+        
+        self?.presenter.createNote(title: title, text: self?.descriptionTextView.text ?? "", image: imageData)
         self?.navigationController?.popViewController(animated: true)
     }
     
@@ -98,8 +100,14 @@ extension NoteViewController: UIImagePickerControllerDelegate, UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             self.imageView.image = image
-        } else if let image = info[.originalImage] as? UIImage {
-            self.imageView.image = image
+            
+//            if let imageData = image.pngData() {
+//                presenter.uploadImage(image: imageData)
+//            }
+//            if let imageData = image.jpegData(compressionQuality: 0.1) {
+//                presenter.uploadImage(image: imageData)
+//            }
+            
         }
         updateImageViewVisibility()
         picker.dismiss(animated: true)

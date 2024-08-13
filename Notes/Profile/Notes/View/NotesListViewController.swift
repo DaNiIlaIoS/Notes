@@ -51,7 +51,7 @@ extension NotesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.reuseId, for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
-//        let note = notes[indexPath.row]
+        let note = notes[indexPath.row]
         
         cell.selectionStyle = .none
 //        cell.configCell(note: note)
