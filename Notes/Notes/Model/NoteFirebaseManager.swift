@@ -44,6 +44,38 @@ final class NoteFirebaseManager {
         }
     }
     
+    private func setNoteImage(stringUrl: String, noteId: String) {
+        guard let userId = AppModel.userId else { return }
+        
+        Firestore.firestore()
+            .collection("users")
+            .document(userId)
+            .collection("notes")
+            .document(noteId)
+            .setData(["noteImageUrl": stringUrl], merge: true)
+    }
+    
+    private func uploadOneImage(image: Data?, storage: StorageReference, completion: @escaping (Result<URL, Error>) -> ()) {
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        guard let imageData = image else { return }
+        
+        storage.putData(imageData, metadata: metaData) { meta, error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            
+            storage.downloadURL { url, error in
+                guard let url = url else {
+                    completion(.failure(error!))
+                    return
+                }
+                completion(.success(url))
+            }
+        }
+    }
+    
     func getNotes(completion: @escaping ([Note]) -> ()) {
         guard let userId = AppModel.userId else { return }
         
@@ -82,37 +114,5 @@ final class NoteFirebaseManager {
                 }
                 completion(notes)
             }
-    }
-    
-    private func setNoteImage(stringUrl: String, noteId: String) {
-        guard let userId = AppModel.userId else { return }
-        
-        Firestore.firestore()
-            .collection("users")
-            .document(userId)
-            .collection("notes")
-            .document(noteId)
-            .setData(["noteImageUrl": stringUrl], merge: true)
-    }
-    
-    private func uploadOneImage(image: Data?, storage: StorageReference, completion: @escaping (Result<URL, Error>) -> ()) {
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpeg"
-        guard let imageData = image else { return }
-        
-        storage.putData(imageData, metadata: metaData) { meta, error in
-            guard error == nil else {
-                completion(.failure(error!))
-                return
-            }
-            
-            storage.downloadURL { url, error in
-                guard let url = url else {
-                    completion(.failure(error!))
-                    return
-                }
-                completion(.success(url))
-            }
-        }
     }
 }

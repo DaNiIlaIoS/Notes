@@ -18,7 +18,7 @@ final class RegistrationFirebaseManager {
             }
             
             if let userId = result?.user.uid {
-//                result?.user.sendEmailVerification()
+                //                result?.user.sendEmailVerification()
                 self?.setUserData(userId: userId, name: user.name, birthday: user.birthday, password: user.password)
                 completion(.success(true))
             }
