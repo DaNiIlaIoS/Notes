@@ -115,4 +115,32 @@ final class NoteFirebaseManager {
                 completion(notes)
             }
     }
+    
+    func deleteNote(noteId: String) {
+        guard let userId = AppModel.userId else { return }
+        
+        Firestore.firestore()
+            .collection("users")
+            .document(userId)
+            .collection("notes")
+            .document(noteId)
+            .delete { error in
+                if let error = error {
+                    print("Error when deleting document: \(error.localizedDescription)")
+                } else {
+                    print("The document was successfully deleted")
+                }
+            }
+        
+        Storage.storage().reference()
+            .child(userId + "/images/notesImages")
+            .child(noteId + ".jpeg")
+            .delete { error in
+                if let error = error {
+                    print("Error when deleting document: \(error.localizedDescription)")
+                } else {
+                    print("The document was successfully deleted")
+                }
+            }
+    }
 }

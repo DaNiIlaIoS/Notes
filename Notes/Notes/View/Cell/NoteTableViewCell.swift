@@ -34,7 +34,6 @@ final class NoteTableViewCell: UITableViewCell {
         image.clipsToBounds = true
         image.layer.cornerRadius = 10
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.heightAnchor.constraint(equalToConstant: self.frame.width / 2).isActive = true
         return image
     }()
     
@@ -89,6 +88,8 @@ final class NoteTableViewCell: UITableViewCell {
             mainStack.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 15),
             mainStack.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -15),
             mainStack.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -15),
+            
+            noteImage.heightAnchor.constraint(equalToConstant: self.frame.width / 2)
         ])
     }
 }
