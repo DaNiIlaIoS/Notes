@@ -67,8 +67,8 @@ extension NotesListViewController: UITableViewDataSource {
 
 extension NotesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let note = notes[indexPath.row]
         let noteVC = NoteViewController()
+        noteVC.note = presenter.notes[indexPath.row]
         navigationController?.pushViewController(noteVC, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)

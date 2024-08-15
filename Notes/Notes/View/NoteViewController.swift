@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol NoteViewProtocol: AnyObject {
     func showError(message: String)
@@ -31,6 +32,7 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     }))
     
     private lazy var saveButton = CustomButton.createBigButton(title: "Сохранить", action: saveAction)
+    private lazy var updateButton = CustomButton.createBigButton(title: "Обновить", action: saveAction)
     
     private lazy var mainStack = CustomVStack.createStack(spacing: 20, arrangedSubviews: [titleTextField,
                                                                                           descriptionTextView,
@@ -50,6 +52,7 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     }
     
     private var presenter: NotePresenterProtocol!
+    var note: Note?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,19 +60,44 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
         
         setupUI()
         updateImageViewVisibility()
+        configureUIForNote()
         
         descriptionTextView.delegate = self
+    }
+    
+    private func configureUIForNote() {
+        if let note = note {
+            // Если заметка существует, заполняем UI данными
+            titleTextField.text = note.title
+            
+            descriptionTextView.text = note.description
+            descriptionTextView.textColor = .textViewText
+
+            if let image = note.imageUrl {
+                imageView.sd_setImage(with: image)
+                updateImageViewVisibility()
+            }
+            
+            saveButton.isHidden = true
+            updateButton.isHidden = false
+        } else {
+            // Если это новая заметка
+            saveButton.isHidden = false
+            updateButton.isHidden = true
+        }
     }
     
     private func setupUI() {
         view.backgroundColor = UIColor.background
         view.addSubview(mainStack)
         view.addSubview(saveButton)
+        view.addSubview(updateButton)
         
         setupConstraints()
     }
     
     private func setupConstraints() {
+        let button = note == nil ? saveButton : updateButton
         NSLayoutConstraint.activate([
             mainStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
@@ -77,9 +105,9 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
             
             imageView.heightAnchor.constraint(equalToConstant: view.frame.width / 2),
             
-            saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
-            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
         ])
     }
     
@@ -101,12 +129,12 @@ extension NoteViewController: UIImagePickerControllerDelegate, UINavigationContr
         if let image = info[.editedImage] as? UIImage {
             self.imageView.image = image
             
-//            if let imageData = image.pngData() {
-//                presenter.uploadImage(image: imageData)
-//            }
-//            if let imageData = image.jpegData(compressionQuality: 0.1) {
-//                presenter.uploadImage(image: imageData)
-//            }
+            //            if let imageData = image.pngData() {
+            //                presenter.uploadImage(image: imageData)
+            //            }
+            //            if let imageData = image.jpegData(compressionQuality: 0.1) {
+            //                presenter.uploadImage(image: imageData)
+            //            }
             
         }
         updateImageViewVisibility()
