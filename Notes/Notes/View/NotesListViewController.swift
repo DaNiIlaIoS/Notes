@@ -23,7 +23,6 @@ final class NotesListViewController: UIViewController, NoteListViewProtocol {
         return tableView
     }()
     
-    private let notes: [Note] = []
     private var presenter: NoteListPresenterProtocol!
     
     override func viewDidLoad() {
@@ -73,5 +72,14 @@ extension NotesListViewController: UITableViewDelegate {
         navigationController?.pushViewController(noteVC, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let note = presenter.notes[indexPath.row]
+            presenter.deleteNote(noteId: note.id)
+            presenter.notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
 }

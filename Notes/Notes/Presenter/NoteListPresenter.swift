@@ -11,6 +11,7 @@ protocol NoteListPresenterProtocol: AnyObject {
     var notes: [Note] { get set }
     
     func getNotes()
+    func deleteNote(noteId: String)
 }
 
 final class NoteListPresenter: NoteListPresenterProtocol {
@@ -29,5 +30,9 @@ final class NoteListPresenter: NoteListPresenterProtocol {
             self?.notes = notes
             self?.view?.updateNotes()
         }
+    }
+    
+    func deleteNote(noteId: String) {
+        noteManager.deleteNote(noteId: noteId)
     }
 }

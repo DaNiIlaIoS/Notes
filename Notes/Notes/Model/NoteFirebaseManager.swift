@@ -44,6 +44,38 @@ final class NoteFirebaseManager {
         }
     }
     
+    private func setNoteImage(stringUrl: String, noteId: String) {
+        guard let userId = AppModel.userId else { return }
+        
+        Firestore.firestore()
+            .collection("users")
+            .document(userId)
+            .collection("notes")
+            .document(noteId)
+            .setData(["noteImageUrl": stringUrl], merge: true)
+    }
+    
+    private func uploadOneImage(image: Data?, storage: StorageReference, completion: @escaping (Result<URL, Error>) -> ()) {
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        guard let imageData = image else { return }
+        
+        storage.putData(imageData, metadata: metaData) { meta, error in
+            guard error == nil else {
+                completion(.failure(error!))
+                return
+            }
+            
+            storage.downloadURL { url, error in
+                guard let url = url else {
+                    completion(.failure(error!))
+                    return
+                }
+                completion(.success(url))
+            }
+        }
+    }
+    
     func getNotes(completion: @escaping ([Note]) -> ()) {
         guard let userId = AppModel.userId else { return }
         
@@ -84,7 +116,7 @@ final class NoteFirebaseManager {
             }
     }
     
-    private func setNoteImage(stringUrl: String, noteId: String) {
+    func deleteNote(noteId: String) {
         guard let userId = AppModel.userId else { return }
         
         Firestore.firestore()
@@ -92,27 +124,23 @@ final class NoteFirebaseManager {
             .document(userId)
             .collection("notes")
             .document(noteId)
-            .setData(["noteImageUrl": stringUrl], merge: true)
-    }
-    
-    private func uploadOneImage(image: Data?, storage: StorageReference, completion: @escaping (Result<URL, Error>) -> ()) {
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpeg"
-        guard let imageData = image else { return }
-        
-        storage.putData(imageData, metadata: metaData) { meta, error in
-            guard error == nil else {
-                completion(.failure(error!))
-                return
-            }
-            
-            storage.downloadURL { url, error in
-                guard let url = url else {
-                    completion(.failure(error!))
-                    return
+            .delete { error in
+                if let error = error {
+                    print("Error when deleting document: \(error.localizedDescription)")
+                } else {
+                    print("The document was successfully deleted")
                 }
-                completion(.success(url))
             }
-        }
+        
+        Storage.storage().reference()
+            .child(userId + "/images/notesImages")
+            .child(noteId + ".jpeg")
+            .delete { error in
+                if let error = error {
+                    print("Error when deleting document: \(error.localizedDescription)")
+                } else {
+                    print("The document was successfully deleted")
+                }
+            }
     }
 }
