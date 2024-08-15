@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class NoteTableViewCell: UITableViewCell {
     static let reuseId = "NoteTableViewCell"
@@ -33,7 +34,6 @@ final class NoteTableViewCell: UITableViewCell {
         image.clipsToBounds = true
         image.layer.cornerRadius = 10
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.heightAnchor.constraint(equalToConstant: self.frame.width / 2).isActive = true
         return image
     }()
     
@@ -44,6 +44,7 @@ final class NoteTableViewCell: UITableViewCell {
                                                                                           noteImage,
                                                                                           descriptionLabel])
     
+    var isCompleted: Bool = false
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -55,7 +56,17 @@ final class NoteTableViewCell: UITableViewCell {
     }
     
     func configCell(note: Note) {
+        titleLabel.text = note.title
+        dateLabel.text = Date().formateDate(dateString: note.id)
+        descriptionLabel.text = note.description
+        isCompleted = note.isCompleted
         
+        if let image = note.imageUrl {
+            noteImage.isHidden = false
+            noteImage.sd_setImage(with: image)
+        } else {
+            noteImage.isHidden = true
+        }
     }
     
     private func setupUI() {
@@ -77,6 +88,9 @@ final class NoteTableViewCell: UITableViewCell {
             mainStack.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 15),
             mainStack.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -15),
             mainStack.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -15),
+            
+            noteImage.heightAnchor.constraint(equalToConstant: self.frame.width / 2)
         ])
     }
 }
+
