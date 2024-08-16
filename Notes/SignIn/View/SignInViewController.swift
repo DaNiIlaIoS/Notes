@@ -65,7 +65,8 @@ class SignInViewController: UIViewController, SignInViewProtocol {
     }
     
     func showError(message: String) {
-        //
+        let alert = CustomAlertController.createAlertController(message: message)
+        present(alert, animated: true)
     }
     
     @objc func showPassword() {

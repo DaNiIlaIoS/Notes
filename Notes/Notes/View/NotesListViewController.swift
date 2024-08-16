@@ -56,7 +56,6 @@ extension NotesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.reuseId, for: indexPath) as? NoteTableViewCell else { return UITableViewCell() }
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let note = presenter.notes[indexPath.row]
         
         cell.configCell(note: note)
@@ -67,8 +66,8 @@ extension NotesListViewController: UITableViewDataSource {
 
 extension NotesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let note = notes[indexPath.row]
         let noteVC = NoteViewController()
+        noteVC.note = presenter.notes[indexPath.row]
         navigationController?.pushViewController(noteVC, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)

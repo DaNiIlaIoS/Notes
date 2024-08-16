@@ -47,6 +47,7 @@
 		48D263322C6291D00032454E /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D263312C6291D00032454E /* RegistrationPresenter.swift */; };
 		48D2B77B2C6A6C160078F71F /* NoteFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2B77A2C6A6C160078F71F /* NoteFirebaseManager.swift */; };
 		48D2B77E2C6A70F80078F71F /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2B77D2C6A70F80078F71F /* NotePresenter.swift */; };
+		48D947AE2C6F5D7C005A1CE8 /* CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D947AD2C6F5D7C005A1CE8 /* CustomAlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		48D263312C6291D00032454E /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		48D2B77A2C6A6C160078F71F /* NoteFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFirebaseManager.swift; sourceTree = "<group>"; };
 		48D2B77D2C6A70F80078F71F /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
+		48D947AD2C6F5D7C005A1CE8 /* CustomAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 				48120ED42C5FD31B0023B0D3 /* CustomButton.swift */,
 				48120ED62C5FD8620023B0D3 /* CustomTextView.swift */,
 				48D2631F2C62877F0032454E /* CustomImagePicker.swift */,
+				48D947AD2C6F5D7C005A1CE8 /* CustomAlertController.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				48D263192C6119350032454E /* NoteTableViewCell.swift in Sources */,
 				48C0668C2C64D26E00BA1728 /* SignInPresenter.swift in Sources */,
 				48D2B77B2C6A6C160078F71F /* NoteFirebaseManager.swift in Sources */,
+				48D947AE2C6F5D7C005A1CE8 /* CustomAlertController.swift in Sources */,
 				48120E782C5D30FD0023B0D3 /* AppDelegate.swift in Sources */,
 				48120ED32C5FD2200023B0D3 /* CustomLabel.swift in Sources */,
 				48D263172C610BD30032454E /* NotesListViewController.swift in Sources */,
