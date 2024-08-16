@@ -112,7 +112,8 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     }
     
     func showError(message: String) {
-        //
+        let alert = CustomAlertController.createAlertController(message: message)
+        present(alert, animated: true)
     }
     
     private func updateImageViewVisibility() {
