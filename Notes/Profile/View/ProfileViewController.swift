@@ -41,39 +41,14 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
     private lazy var emailLabel = CustomLabel.createSubLabel(text: presenter.email ?? "")
     private lazy var                                                                                            birthdayLabel = CustomLabel.createDateLabel(text: "07 апреля 2006")
     
-    private lazy var buttonRightImage: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(systemName: "chevron.right")
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
+    private lazy var notesButton = CustomButton.profileButton(title: "Заметки", imageName: "folder", action: UIAction(handler: { [weak self] _ in
+        let notesVC = NotesListViewController()
+        self?.navigationController?.pushViewController(notesVC, animated: true)
+    }))
     
-    private lazy var notesButton: UIButton = {
-        var config = UIButton.Configuration.plain()
-        config.imagePlacement = .leading
-        config.imagePadding = 20
-        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
-            var outgoing = incoming
-            outgoing.font = UIFont.systemFont(ofSize: 17)
-            return outgoing
-        })
+    private lazy var settingsButton = CustomButton.profileButton(title: "Настройки", imageName: "gear", action: UIAction(handler: { _ in
         
-        let button = UIButton(configuration: config, primaryAction: UIAction(handler: { [weak self] _ in
-            let notesVC = NotesListViewController()
-            self?.navigationController?.pushViewController(notesVC, animated: true)
-        }))
-        
-        button.setTitle("Заметки", for: .normal)
-        button.setImage(UIImage(systemName: "folder"), for: .normal)
-        button.contentHorizontalAlignment = .leading
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .white
-        button.tintColor = .black
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        button.addSubview(buttonRightImage)
-        return button
-    }()
+    }))
     
     private lazy var exitButton = CustomButton.createBigButton(title: "Выход", action: UIAction(handler: { [weak self] _ in
         self?.presenter.signOut()
@@ -86,7 +61,8 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
     
     private lazy var mainStack = CustomVStack.createStack(spacing: 20, arrangedSubviews: [imageView,
                                                                                           labelsStack,
-                                                                                          notesButton])
+                                                                                          notesButton,
+                                                                                          settingsButton])
     
     private var presenter: ProfilePresenterProtocol!
     
@@ -133,9 +109,6 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
             exitButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
-            buttonRightImage.trailingAnchor.constraint(equalTo: notesButton.trailingAnchor, constant: -10),
-            buttonRightImage.centerYAnchor.constraint(equalTo: notesButton.centerYAnchor),
         ])
     }
     
