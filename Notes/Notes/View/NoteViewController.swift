@@ -32,7 +32,7 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     }))
     
     private lazy var saveButton = CustomButton.createBigButton(title: "Сохранить", action: saveAction)
-    private lazy var updateButton = CustomButton.createBigButton(title: "Обновить", action: saveAction)
+    private lazy var updateButton = CustomButton.createBigButton(title: "Обновить", action: updateAction)
     
     private lazy var mainStack = CustomVStack.createStack(spacing: 20, arrangedSubviews: [titleTextField,
                                                                                           descriptionTextView,
@@ -49,6 +49,20 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
         
         self?.presenter.createNote(title: title, text: self?.descriptionTextView.text ?? "", image: imageData)
         self?.navigationController?.popViewController(animated: true)
+    }
+    
+    private lazy var updateAction = UIAction { [weak self] _ in
+        guard let self = self else { return }
+        
+        guard let title = titleTextField.text, let description = descriptionTextView.text else {
+            showError(message: "Please fill title text field")
+            return
+        }
+        
+        let imageData = imageView.image?.jpegData(compressionQuality: 0.1)
+        
+        presenter.updateNote(noteId: note!.id, title: title, description: description, imageData: imageData)
+        navigationController?.popViewController(animated: true)
     }
     
     private var presenter: NotePresenterProtocol!
