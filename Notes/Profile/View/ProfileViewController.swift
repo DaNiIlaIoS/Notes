@@ -146,7 +146,8 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
     }
     
     func showError(message: String) {
-        //
+        let alert = CustomAlertController.createAlertController(message: message)
+        present(alert, animated: true)
     }
 }
 

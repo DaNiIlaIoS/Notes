@@ -143,4 +143,27 @@ final class NoteFirebaseManager {
                 }
             }
     }
+    
+    func updateNote(noteId: String, title: String, description: String, imageData: Data?) {
+        guard let userId = AppModel.userId else { return }
+        
+        let updatedNote: [String: Any] = ["title": title, "text": description, "date": Date(), "isCompleted": false]
+        
+        Firestore.firestore()
+            .collection("users")
+            .document(userId)
+            .collection("notes")
+            .document(noteId)
+            .updateData(updatedNote) { error in
+                if let error = error {
+                    print("Error updating document: \(error)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+        
+        if let image = imageData {
+            uploadImage(image: image, id: noteId)
+        }
+    }
 }

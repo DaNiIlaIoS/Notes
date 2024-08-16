@@ -82,7 +82,8 @@ class RegistrationViewController: UIViewController, RegistrationViewProtocol {
     }
     
     func showError(message: String) {
-        //
+        let alert = CustomAlertController.createAlertController(message: message)
+        present(alert, animated: true)
     }
     
     private func setupUI() {

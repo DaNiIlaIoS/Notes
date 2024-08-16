@@ -57,7 +57,7 @@ final class NoteTableViewCell: UITableViewCell {
     
     func configCell(note: Note) {
         titleLabel.text = note.title
-        dateLabel.text = Date().formateDate(dateString: note.id)
+        dateLabel.text = note.date.formateDate()
         descriptionLabel.text = note.description
         isCompleted = note.isCompleted
         
