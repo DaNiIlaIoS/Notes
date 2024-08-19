@@ -34,7 +34,7 @@ struct CustomButton {
     }
     
     static func profileButton(title: String, imageName: String, action: UIAction) -> UIButton {
-            var buttonRightImage: UIImageView = {
+            let buttonRightImage: UIImageView = {
                 let image = UIImageView()
                 image.image = UIImage(systemName: "chevron.right")
                 image.translatesAutoresizingMaskIntoConstraints = false
