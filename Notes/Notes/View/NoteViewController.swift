@@ -54,23 +54,24 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     private lazy var updateAction = UIAction { [weak self] _ in
         guard let self = self else { return }
         
-        guard let title = titleTextField.text, let description = descriptionTextView.text else {
+        guard let title = titleTextField.text,
+              let description = descriptionTextView.text,
+              let note = presenter.note else {
             showError(message: "Please fill title text field")
             return
         }
         
         let imageData = imageView.image?.jpegData(compressionQuality: 0.1)
         
-        presenter.updateNote(noteId: note!.id, title: title, description: description, imageData: imageData)
+        presenter.updateNote(noteId: note.id, title: title, description: description, imageData: imageData)
         navigationController?.popViewController(animated: true)
     }
     
-    private var presenter: NotePresenterProtocol!
-    var note: Note?
+    var presenter: NotePresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = NotePresenter(view: self)
+//        presenter = NotePresenter(view: self)
         
         setupUI()
         updateImageViewVisibility()
@@ -80,7 +81,7 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     }
     
     private func configureUIForNote() {
-        if let note = note {
+        if let note = presenter.note {
             // Если заметка существует, заполняем UI данными
             titleTextField.text = note.title
             
@@ -111,7 +112,7 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     }
     
     private func setupConstraints() {
-        let button = note == nil ? saveButton : updateButton
+        let button = presenter.note == nil ? saveButton : updateButton
         NSLayoutConstraint.activate([
             mainStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),

@@ -45,6 +45,8 @@ final class NotesListViewController: UIViewController, NoteListViewProtocol {
     
     @objc func createNote() {
         let noteVC = NoteViewController()
+        let presenter = NotePresenter(view: noteVC)
+        noteVC.presenter = presenter
         navigationController?.pushViewController(noteVC, animated: true)
     }
 }
@@ -67,7 +69,8 @@ extension NotesListViewController: UITableViewDataSource {
 extension NotesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let noteVC = NoteViewController()
-        noteVC.note = presenter.notes[indexPath.row]
+        let presenter = NotePresenter(view: noteVC, note: self.presenter.notes[indexPath.row])
+        noteVC.presenter = presenter
         navigationController?.pushViewController(noteVC, animated: true)
         
         tableView.deselectRow(at: indexPath, animated: true)
