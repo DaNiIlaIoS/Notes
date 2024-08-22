@@ -46,8 +46,8 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
         self?.navigationController?.pushViewController(notesVC, animated: true)
     }))
     
-    private lazy var settingsButton = CustomButton.profileButton(title: "Настройки", imageName: "gear", action: UIAction(handler: { _ in
-        
+    private lazy var settingsButton = CustomButton.profileButton(title: "Настройки", imageName: "gear", action: UIAction(handler: { [weak self] _ in
+        self?.navigationController?.pushViewController(SettingsViewController(), animated: true)
     }))
     
     private lazy var exitButton = CustomButton.createBigButton(title: "Выход", action: UIAction(handler: { [weak self] _ in

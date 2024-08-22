@@ -21,6 +21,11 @@
 		48120ED92C5FDCF20023B0D3 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED82C5FDCF20023B0D3 /* SignInViewController.swift */; };
 		48120EDB2C5FDDBE0023B0D3 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120EDA2C5FDDBE0023B0D3 /* NotificationName.swift */; };
 		48120EDF2C60F3890023B0D3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120EDE2C60F3890023B0D3 /* ProfileViewController.swift */; };
+		489900DF2C77672B004273EB /* a4.json in Resources */ = {isa = PBXBuildFile; fileRef = 489900DB2C77672B004273EB /* a4.json */; };
+		489900E02C77672B004273EB /* a3.json in Resources */ = {isa = PBXBuildFile; fileRef = 489900DC2C77672B004273EB /* a3.json */; };
+		489900E12C77672B004273EB /* a1.json in Resources */ = {isa = PBXBuildFile; fileRef = 489900DD2C77672B004273EB /* a1.json */; };
+		489900E22C77672B004273EB /* a2.json in Resources */ = {isa = PBXBuildFile; fileRef = 489900DE2C77672B004273EB /* a2.json */; };
+		489900E52C77677D004273EB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489900E42C77677D004273EB /* SettingsViewController.swift */; };
 		48B144F32C6BC50400C1234A /* NoteListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B144F22C6BC50400C1234A /* NoteListPresenter.swift */; };
 		48B144F52C6BCB2300C1234A /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B144F42C6BCB2300C1234A /* Date+Ex.swift */; };
 		48C0665B2C63825400BA1728 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48C0665A2C63825400BA1728 /* GoogleService-Info.plist */; };
@@ -67,6 +72,11 @@
 		48120ED82C5FDCF20023B0D3 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		48120EDA2C5FDDBE0023B0D3 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		48120EDE2C60F3890023B0D3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		489900DB2C77672B004273EB /* a4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = a4.json; sourceTree = "<group>"; };
+		489900DC2C77672B004273EB /* a3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = a3.json; sourceTree = "<group>"; };
+		489900DD2C77672B004273EB /* a1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = a1.json; sourceTree = "<group>"; };
+		489900DE2C77672B004273EB /* a2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = a2.json; sourceTree = "<group>"; };
+		489900E42C77677D004273EB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		48B144F22C6BC50400C1234A /* NoteListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListPresenter.swift; sourceTree = "<group>"; };
 		48B144F42C6BCB2300C1234A /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
 		48C0665A2C63825400BA1728 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -132,9 +142,14 @@
 				48120EBB2C5FAB580023B0D3 /* SignIn */,
 				48120EBC2C5FABAB0023B0D3 /* Profile */,
 				48120EBD2C5FABBE0023B0D3 /* Notes */,
+				489900E32C77675E004273EB /* Settings */,
 				48120ECA2C5FCDB40023B0D3 /* CustomUI */,
 				48120ECF2C5FD1A80023B0D3 /* Extensions */,
 				48120E802C5D30FE0023B0D3 /* Assets.xcassets */,
+				489900DD2C77672B004273EB /* a1.json */,
+				489900DE2C77672B004273EB /* a2.json */,
+				489900DC2C77672B004273EB /* a3.json */,
+				489900DB2C77672B004273EB /* a4.json */,
 				48120E822C5D30FE0023B0D3 /* LaunchScreen.storyboard */,
 				48C0665A2C63825400BA1728 /* GoogleService-Info.plist */,
 				48120E852C5D30FE0023B0D3 /* Info.plist */,
@@ -319,6 +334,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		489900E32C77675E004273EB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				489900E42C77677D004273EB /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		48D2631E2C6135380032454E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,9 +427,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				489900E22C77672B004273EB /* a2.json in Resources */,
+				489900DF2C77672B004273EB /* a4.json in Resources */,
 				48120E812C5D30FE0023B0D3 /* Assets.xcassets in Resources */,
 				48120E842C5D30FE0023B0D3 /* Base in Resources */,
+				489900E12C77672B004273EB /* a1.json in Resources */,
 				48C0665B2C63825400BA1728 /* GoogleService-Info.plist in Resources */,
+				489900E02C77672B004273EB /* a3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +446,7 @@
 			files = (
 				48120ECC2C5FCDCA0023B0D3 /* CustomTextField.swift in Sources */,
 				48D263322C6291D00032454E /* RegistrationPresenter.swift in Sources */,
+				489900E52C77677D004273EB /* SettingsViewController.swift in Sources */,
 				48B144F32C6BC50400C1234A /* NoteListPresenter.swift in Sources */,
 				48C0668A2C64D10E00BA1728 /* ProfilePresenter.swift in Sources */,
 				48120EDB2C5FDDBE0023B0D3 /* NotificationName.swift in Sources */,
