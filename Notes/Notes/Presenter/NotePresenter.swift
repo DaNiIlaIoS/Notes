@@ -8,7 +8,8 @@
 import Foundation
 
 protocol NotePresenterProtocol: AnyObject {
-    func uploadImage(image: Data)
+    var note: Note? { get set }
+    
     func createNote(title: String, text: String, image: Data?)
     func updateNote(noteId: String, title: String, description: String, imageData: Data?)
 }
@@ -17,9 +18,11 @@ final class NotePresenter: NotePresenterProtocol {
     private let noteManager = NoteFirebaseManager()
     
     weak var view: NoteViewProtocol?
+    var note: Note?
     
-    init(view: NoteViewProtocol) {
+    init(view: NoteViewProtocol, note: Note? = nil) {
         self.view = view
+        self.note = note
     }
     
     func createNote(title: String, text: String, image: Data?) {
@@ -28,9 +31,5 @@ final class NotePresenter: NotePresenterProtocol {
     
     func updateNote(noteId: String, title: String, description: String, imageData: Data?) {
         noteManager.updateNote(noteId: noteId, title: title, description: description, imageData: imageData)
-    }
-    
-    func uploadImage(image: Data) {
-        
     }
 }
