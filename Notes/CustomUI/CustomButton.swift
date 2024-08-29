@@ -32,5 +32,42 @@ struct CustomButton {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
+    
+    static func profileButton(title: String, imageName: String, action: UIAction) -> UIButton {
+            let buttonRightImage: UIImageView = {
+                let image = UIImageView()
+                image.image = UIImage(systemName: "chevron.right")
+                image.translatesAutoresizingMaskIntoConstraints = false
+                return image
+            }()
+            
+            var config = UIButton.Configuration.plain()
+            config.imagePlacement = .leading
+            config.imagePadding = 20
+            config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
+                var outgoing = incoming
+                outgoing.font = UIFont.systemFont(ofSize: 17)
+                return outgoing
+            })
+            
+            let button = UIButton(configuration: config, primaryAction: action)
+            
+            button.setTitle(title, for: .normal)
+            button.setImage(UIImage(systemName: imageName), for: .normal)
+            button.contentHorizontalAlignment = .leading
+            button.layer.cornerRadius = 10
+            button.backgroundColor = .white
+            button.tintColor = .black
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            button.addSubview(buttonRightImage)
+            
+            NSLayoutConstraint.activate([
+                buttonRightImage.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
+                buttonRightImage.centerYAnchor.constraint(equalTo: button.centerYAnchor),
+            ])
+            
+            return button
+    }
 }
 
