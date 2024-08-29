@@ -53,6 +53,9 @@ class SignInViewController: UIViewController, SignInViewProtocol {
         view.backgroundColor = UIColor.background
         view.addSubview(mainStack)
         
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         setupConstraints()
     }
     
@@ -76,5 +79,16 @@ class SignInViewController: UIViewController, SignInViewProtocol {
     @objc func hidePassword() {
         // Скрываем пароль, когда кнопка отпускается внутри её границ
         passwordTextField.isSecureTextEntry.toggle()
+    }
+}
+
+extension SignInViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if emailTextField.isFirstResponder {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            view.endEditing(true)
+        }
+        return true
     }
 }

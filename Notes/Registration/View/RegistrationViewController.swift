@@ -90,6 +90,10 @@ class RegistrationViewController: UIViewController, RegistrationViewProtocol {
         view.backgroundColor = UIColor.background
         view.addSubview(mainStack)
         
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         setupConstraints()
     }
     
@@ -106,7 +110,7 @@ class RegistrationViewController: UIViewController, RegistrationViewProtocol {
         formatter.dateFormat = "dd MMMM yyyy"
         formatter.locale = Locale(identifier: "ru_RU")
         dateTextField.text = formatter.string(from: datePicker.date)
-        self.view.endEditing(true)
+        self.emailTextField.becomeFirstResponder()
     }
     
     @objc func cancelAction() {
@@ -120,5 +124,18 @@ class RegistrationViewController: UIViewController, RegistrationViewProtocol {
     @objc func hidePassword() {
         // Скрываем пароль, когда кнопка отпускается внутри её границ
         passwordTextField.isSecureTextEntry.toggle()
+    }
+}
+
+extension RegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if nameTextField.isFirstResponder {
+            dateTextField.becomeFirstResponder()
+        } else if emailTextField.isFirstResponder {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            view.endEditing(true)
+        }
+        return true
     }
 }
