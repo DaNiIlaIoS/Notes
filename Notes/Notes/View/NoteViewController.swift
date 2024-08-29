@@ -71,7 +71,7 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        presenter = NotePresenter(view: self)
+        //        presenter = NotePresenter(view: self)
         
         setupUI()
         updateImageViewVisibility()
@@ -87,7 +87,7 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
             
             descriptionTextView.text = note.description
             descriptionTextView.textColor = .textViewText
-
+            
             if let image = note.imageUrl {
                 imageView.sd_setImage(with: image)
                 updateImageViewVisibility()
@@ -108,6 +108,11 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
         view.addSubview(saveButton)
         view.addSubview(updateButton)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
+        titleTextField.delegate = self
+        
         setupConstraints()
     }
     
@@ -124,6 +129,10 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
         ])
+    }
+    
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
     }
     
     func showError(message: String) {
@@ -155,6 +164,15 @@ extension NoteViewController: UIImagePickerControllerDelegate, UINavigationContr
         }
         updateImageViewVisibility()
         picker.dismiss(animated: true)
+    }
+}
+
+extension NoteViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if titleTextField.isFirstResponder {
+            descriptionTextView.becomeFirstResponder()
+        }
+        return true
     }
 }
 
