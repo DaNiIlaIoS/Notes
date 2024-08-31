@@ -16,14 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = RegistrationViewController()
+        window?.rootViewController = OnboardingViewController()
         window?.makeKeyAndVisible()
         
-        if appModel.isUserLogin() {
-            setProfileController()
-        } else {
-            setSignInController()
-        }
+//        if appModel.isUserLogin() {
+//            setProfileController()
+//        } else {
+//            setSignInController()
+//        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(setRegistrationController), name: Notification.Name(.setRegistrationController), object: nil)
         

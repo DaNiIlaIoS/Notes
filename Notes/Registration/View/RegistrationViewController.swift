@@ -56,18 +56,18 @@ class RegistrationViewController: UIViewController, RegistrationViewProtocol {
         NotificationCenter.default.post(Notification(name: Notification.Name(.setSignInController)))
     }))
     
-    private lazy var textFieldsStack = CustomVStack.createStack(spacing: 20,
+    private lazy var textFieldsStack = CustomStack.createVStack(spacing: 20,
                                                                 arrangedSubviews: [nameTextField,
                                                                                    dateTextField,
                                                                                    emailTextField,
                                                                                    passwordTextField],
                                                                 distribution: .fillEqually)
     
-    private lazy var buttonsStack = CustomVStack.createStack(spacing: 20,
+    private lazy var buttonsStack = CustomStack.createVStack(spacing: 20,
                                                              arrangedSubviews: [registrationButton,
                                                                                 haveAccountButton])
     
-    private lazy var mainStack = CustomVStack.createStack(spacing: 40,
+    private lazy var mainStack = CustomStack.createVStack(spacing: 40,
                                                           arrangedSubviews: [titleLabel,
                                                                              textFieldsStack,
                                                                              buttonsStack])
