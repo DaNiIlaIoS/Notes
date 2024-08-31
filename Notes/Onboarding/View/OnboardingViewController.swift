@@ -21,7 +21,7 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
         layout.itemSize = CGSize(width: view.frame.width, height: view.frame.height)
         
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
-        collectionView.backgroundColor = .background
+//        collectionView.backgroundColor = .background
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: OnboardingCell.reuseId)
@@ -46,7 +46,7 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalToConstant: 50).isActive = true
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        view.backgroundColor = .green
+        
         view.addGestureRecognizer(tapGesture)
         view.addSubview(nextImage)
         
@@ -62,6 +62,7 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
     
     private var presenter: OnboardingPresenterProtocol!
     private var pagers: [UIView] = []
+    private var currentSlide: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +76,22 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
     }
     
     @objc func nextSlide() {
-        print("Button was tapped")
+        let maxSlide = presenter.onboardingData.count - 1
+        
+        if currentSlide < maxSlide {
+            currentSlide += 1
+            collectionView.scrollToItem(at: IndexPath(item: currentSlide, section: 0), at: .centeredHorizontally, animated: true)
+            updatePagersConstraints()
+        }
+    }
+    
+    @objc func scrollToSlide(sender: UIGestureRecognizer) {
+        guard let index = sender.view?.tag else { return }
+        print("Selected slide with tag:", index)
+        
+        collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: true)
+        currentSlide = index
+        updatePagersConstraints()
     }
     
     private func createPageControl() {
@@ -83,14 +99,14 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
         hStack.addArrangedSubview(pagerStack)
         hStack.addArrangedSubview(nextButton)
         
-        for page in 1...presenter.onboardingData.count {
+        for page in 0..<presenter.onboardingData.count {
             let view = UIView()
             view.tag = page
             view.backgroundColor = .gray
             view.layer.cornerRadius = 5
             view.translatesAutoresizingMaskIntoConstraints = false
-            view.widthAnchor.constraint(equalToConstant: 10).isActive = true
-            view.heightAnchor.constraint(equalToConstant: 10).isActive = true
+            view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(scrollToSlide(sender: ))))
+            
             pagers.append(view)
             pagerStack.addArrangedSubview(view)
         }
@@ -104,6 +120,29 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
             hStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             hStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
         ])
+        
+        updatePagersConstraints()
+    }
+    
+    func updatePagersConstraints() {
+        pagers.forEach { page in
+            let tag = page.tag
+            let viewTag = currentSlide
+            
+            page.constraints.forEach { constraint in
+                page.removeConstraint(constraint)
+            }
+            
+            if tag == viewTag {
+                page.layer.opacity = 1
+                page.widthAnchor.constraint(equalToConstant: 20).isActive = true
+            } else {
+                page.layer.opacity = 0.5
+                page.widthAnchor.constraint(equalToConstant: 10).isActive = true
+            }
+            
+            page.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        }
     }
 }
 
@@ -120,5 +159,13 @@ extension OnboardingViewController: UICollectionViewDataSource {
 }
 
 extension OnboardingViewController: UICollectionViewDelegate {
-    
+
+}
+
+extension OnboardingViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let curentSlide = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        self.currentSlide = curentSlide
+        updatePagersConstraints()
+    }
 }
