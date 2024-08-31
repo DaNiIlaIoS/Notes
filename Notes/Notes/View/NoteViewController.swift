@@ -34,7 +34,7 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     private lazy var saveButton = CustomButton.createBigButton(title: "Сохранить", action: saveAction)
     private lazy var updateButton = CustomButton.createBigButton(title: "Обновить", action: updateAction)
     
-    private lazy var mainStack = CustomVStack.createStack(spacing: 20, arrangedSubviews: [titleTextField,
+    private lazy var mainStack = CustomStack.createVStack(spacing: 20, arrangedSubviews: [titleTextField,
                                                                                           descriptionTextView,
                                                                                           imageView,
                                                                                           addImageButton])

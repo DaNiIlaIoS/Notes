@@ -54,12 +54,12 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
         self?.presenter.signOut()
     }))
     
-    private lazy var labelsStack = CustomVStack.createStack(spacing: 5, arrangedSubviews: [nameLabel,
+    private lazy var labelsStack = CustomStack.createVStack(spacing: 5, arrangedSubviews: [nameLabel,
                                                                                            emailLabel,
                                                                                            birthdayLabel],
                                                             alignment: .center)
     
-    private lazy var mainStack = CustomVStack.createStack(spacing: 20, arrangedSubviews: [imageView,
+    private lazy var mainStack = CustomStack.createVStack(spacing: 20, arrangedSubviews: [imageView,
                                                                                           labelsStack,
                                                                                           notesButton,
                                                                                           settingsButton])

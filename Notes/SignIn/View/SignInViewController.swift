@@ -28,15 +28,15 @@ class SignInViewController: UIViewController, SignInViewProtocol {
         NotificationCenter.default.post(Notification(name: Notification.Name(.setRegistrationController)))
     }))
     
-    private lazy var textFieldsStack = CustomVStack.createStack(spacing: 20,
+    private lazy var textFieldsStack = CustomStack.createVStack(spacing: 20,
                                                                 arrangedSubviews: [emailTextField,
                                                                                    passwordTextField],
                                                                 distribution: .fillEqually)
     
-    private lazy var buttonsStack = CustomVStack.createStack(spacing: 20,
+    private lazy var buttonsStack = CustomStack.createVStack(spacing: 20,
                                                              arrangedSubviews: [signInButton,
                                                                                 registrationButton])
-    private lazy var mainStack = CustomVStack.createStack(spacing: 40, arrangedSubviews: [titleLabel,
+    private lazy var mainStack = CustomStack.createVStack(spacing: 40, arrangedSubviews: [titleLabel,
                                                                                           textFieldsStack,
                                                                                           buttonsStack])
     
