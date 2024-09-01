@@ -9,17 +9,35 @@ import Foundation
 
 protocol OnboardingPresenterProtocol: AnyObject {
     var onboardingData: [OnboardingModel] { get }
+    var fromValue: CGFloat { get set }
+    
+    func getCurrentIndex(currentSlide: Int) -> CGFloat
+    func updateFromValue(currentSlide: Int)
+    func goToApp()
 }
 
 final class OnboardingPresenter: OnboardingPresenterProtocol {
+    let onboardingData: [OnboardingModel] = OnboardingModel.mockData()
+    var currentPageIndex: CGFloat = 1
+    var fromValue: CGFloat = 0
     
     weak var view: OnboardingViewProtocol?
     
     init(view: OnboardingViewProtocol) {
         self.view = view
+        
     }
     
-    let onboardingData: [OnboardingModel] = [OnboardingModel(title: "Registration", text: "Registration is required to gain access to all the features of our application. Registration is very simple - it only takes a few minutes!", animationName: "a1"),
-                                             OnboardingModel(title: "Login", text: "To continue using our service, you need to log in. If you already have an account, simply log in. If not, create one in a couple of minutes!", animationName: "a2"),
-                                             OnboardingModel(title: "Use App", text: "Thank you for choosing our application! We wish you a great experience and a pleasant time with our application!", animationName: "a3")]
+    func getCurrentIndex(currentSlide: Int) -> CGFloat {
+        return (currentPageIndex / CGFloat(onboardingData.count)) * CGFloat(currentSlide + 1)
+    }
+    
+    func updateFromValue(currentSlide: Int) {
+        fromValue = getCurrentIndex(currentSlide: currentSlide)
+    }
+    
+    func goToApp() {
+        UserDefaults.standard.set(true, forKey: "goToApp")
+        NotificationCenter.default.post(Notification(name: Notification.Name(.setSignInController)))
+    }
 }
