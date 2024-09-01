@@ -13,7 +13,7 @@
 		48120E812C5D30FE0023B0D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48120E802C5D30FE0023B0D3 /* Assets.xcassets */; };
 		48120E842C5D30FE0023B0D3 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 48120E832C5D30FE0023B0D3 /* Base */; };
 		48120ECC2C5FCDCA0023B0D3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ECB2C5FCDCA0023B0D3 /* CustomTextField.swift */; };
-		48120ECE2C5FD0CD0023B0D3 /* CustomVStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ECD2C5FD0CD0023B0D3 /* CustomVStack.swift */; };
+		48120ECE2C5FD0CD0023B0D3 /* CustomStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ECD2C5FD0CD0023B0D3 /* CustomStack.swift */; };
 		48120ED12C5FD1BA0023B0D3 /* UIStack+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED02C5FD1BA0023B0D3 /* UIStack+Ex.swift */; };
 		48120ED32C5FD2200023B0D3 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED22C5FD2200023B0D3 /* CustomLabel.swift */; };
 		48120ED52C5FD31B0023B0D3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48120ED42C5FD31B0023B0D3 /* CustomButton.swift */; };
@@ -68,7 +68,7 @@
 		48120E832C5D30FE0023B0D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48120E852C5D30FE0023B0D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48120ECB2C5FCDCA0023B0D3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		48120ECD2C5FD0CD0023B0D3 /* CustomVStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVStack.swift; sourceTree = "<group>"; };
+		48120ECD2C5FD0CD0023B0D3 /* CustomStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStack.swift; sourceTree = "<group>"; };
 		48120ED02C5FD1BA0023B0D3 /* UIStack+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStack+Ex.swift"; sourceTree = "<group>"; };
 		48120ED22C5FD2200023B0D3 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		48120ED42C5FD31B0023B0D3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -320,7 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				48120ECB2C5FCDCA0023B0D3 /* CustomTextField.swift */,
-				48120ECD2C5FD0CD0023B0D3 /* CustomVStack.swift */,
+				48120ECD2C5FD0CD0023B0D3 /* CustomStack.swift */,
 				48120ED22C5FD2200023B0D3 /* CustomLabel.swift */,
 				48120ED42C5FD31B0023B0D3 /* CustomButton.swift */,
 				48120ED62C5FD8620023B0D3 /* CustomTextView.swift */,
@@ -546,7 +546,7 @@
 				48120E7A2C5D30FD0023B0D3 /* SceneDelegate.swift in Sources */,
 				48120ED92C5FDCF20023B0D3 /* SignInViewController.swift in Sources */,
 				489900F02C776AA1004273EB /* OnboardingModel.swift in Sources */,
-				48120ECE2C5FD0CD0023B0D3 /* CustomVStack.swift in Sources */,
+				48120ECE2C5FD0CD0023B0D3 /* CustomStack.swift in Sources */,
 				48B144F52C6BCB2300C1234A /* Date+Ex.swift in Sources */,
 				48D2632E2C628DBB0032454E /* UserRegData.swift in Sources */,
 			);

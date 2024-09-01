@@ -37,10 +37,10 @@ final class NoteTableViewCell: UITableViewCell {
         return image
     }()
     
-    private lazy var titleStack = CustomVStack.createStack(spacing: 5, arrangedSubviews: [titleLabel,
+    private lazy var titleStack = CustomStack.createVStack(spacing: 5, arrangedSubviews: [titleLabel,
                                                                                           dateLabel,])
     
-    private lazy var mainStack = CustomVStack.createStack(spacing: 10, arrangedSubviews: [titleStack,
+    private lazy var mainStack = CustomStack.createVStack(spacing: 10, arrangedSubviews: [titleStack,
                                                                                           noteImage,
                                                                                           descriptionLabel])
     
