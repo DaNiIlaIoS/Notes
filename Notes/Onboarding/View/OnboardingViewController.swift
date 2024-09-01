@@ -29,7 +29,9 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
         return collectionView
     }()
     
-    private lazy var skipButton = CustomButton.createSmallButton(title: "Skip")
+    private lazy var skipButton = CustomButton.createSmallButton(title: "Skip", action: UIAction(handler: { [weak self] _ in
+        self?.presenter.goToApp()
+    }))
     private lazy var nextButton: UIView = {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(nextSlide))
         
@@ -63,6 +65,7 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
     private var presenter: OnboardingPresenterProtocol!
     private var pagers: [UIView] = []
     private var currentSlide: Int = 0
+    private var shape = CAShapeLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +74,8 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
         view.addSubview(collectionView)
         view.addSubview(hStack)
 
-        skipButton.setTitleColor(.gray, for: .normal)
         createPageControl()
+        setShape()
     }
     
     @objc func nextSlide() {
@@ -82,6 +85,8 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
             currentSlide += 1
             collectionView.scrollToItem(at: IndexPath(item: currentSlide, section: 0), at: .centeredHorizontally, animated: true)
             updatePagersConstraints()
+        } else {
+            presenter.goToApp()
         }
     }
     
@@ -94,10 +99,34 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
         updatePagersConstraints()
     }
     
+    private func setShape() {
+        let nextStroke = UIBezierPath(arcCenter: CGPoint(x: 25, y: 25), radius: 25, startAngle: -(.pi / 2), endAngle: .pi * 2, clockwise: true)
+        
+        let trackShape = CAShapeLayer()
+        trackShape.path = nextStroke.cgPath
+        trackShape.fillColor = UIColor.clear.cgColor
+        trackShape.strokeColor = UIColor.gray.cgColor
+        trackShape.opacity = 0.1
+        trackShape.lineWidth = 3
+        nextButton.layer.addSublayer(trackShape)
+        
+        shape.path = nextStroke.cgPath
+        shape.fillColor = UIColor.clear.cgColor
+        shape.strokeColor = UIColor.gray.cgColor
+        shape.lineWidth = 3
+        shape.lineCap = .round
+        shape.strokeStart = 0
+        shape.strokeEnd = 0
+        
+        nextButton.layer.addSublayer(shape)
+    }
+    
     private func createPageControl() {
         hStack.addArrangedSubview(skipButton)
         hStack.addArrangedSubview(pagerStack)
         hStack.addArrangedSubview(nextButton)
+        
+        skipButton.setTitleColor(.gray, for: .normal)
         
         for page in 0..<presenter.onboardingData.count {
             let view = UIView()
@@ -143,6 +172,16 @@ final class OnboardingViewController: UIViewController, OnboardingViewProtocol {
             
             page.heightAnchor.constraint(equalToConstant: 10).isActive = true
         }
+
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = presenter.fromValue
+        animation.toValue = presenter.getCurrentIndex(currentSlide: currentSlide)
+        animation.duration = 0.5
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = .forwards
+        shape.add(animation, forKey: "animation")
+        
+        presenter.updateFromValue(currentSlide: currentSlide)
     }
 }
 
@@ -164,8 +203,8 @@ extension OnboardingViewController: UICollectionViewDelegate {
 
 extension OnboardingViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let curentSlide = Int(scrollView.contentOffset.x / scrollView.frame.width)
-        self.currentSlide = curentSlide
+        let currentSlide = Int(scrollView.contentOffset.x / scrollView.frame.width)
+        self.currentSlide = currentSlide
         updatePagersConstraints()
     }
 }

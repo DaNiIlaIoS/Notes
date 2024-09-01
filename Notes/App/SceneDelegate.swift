@@ -15,15 +15,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let scene = (scene as? UIWindowScene) else { return }
+        let userDidSeeOnboarding = UserDefaults.standard.bool(forKey: "goToApp")
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = OnboardingViewController()
+        window?.rootViewController = RegistrationViewController()
         window?.makeKeyAndVisible()
         
-//        if appModel.isUserLogin() {
-//            setProfileController()
-//        } else {
-//            setSignInController()
-//        }
+        if userDidSeeOnboarding {
+            if appModel.isUserLogin() {
+                setProfileController()
+            } else {
+                setSignInController()
+            }
+        } else {
+            window?.rootViewController = OnboardingViewController()
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(setRegistrationController), name: Notification.Name(.setRegistrationController), object: nil)
         
