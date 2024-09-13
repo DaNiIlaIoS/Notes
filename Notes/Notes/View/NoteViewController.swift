@@ -71,7 +71,6 @@ final class NoteViewController: UIViewController, NoteViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        presenter = NotePresenter(view: self)
         
         setupUI()
         updateImageViewVisibility()
